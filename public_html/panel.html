@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mi Panel | CeroDistancia</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="index.css?v=2.0">
+
+  <style>
+    .panel-header-box {
+      background: var(--dark-card);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border-glass);
+      border-radius: 20px;
+      padding: 24px 28px;
+    }
+
+    .tienda-control-card {
+      background: var(--dark-card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-glass);
+      border-radius: 20px;
+      padding: 24px;
+      transition: all 0.25s ease;
+      height: 100%;
+    }
+
+    .tienda-control-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(16, 185, 129, 0.4);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- GLOW EFFECTS -->
+  <div class="bg-glow-1"></div>
+  <div class="bg-glow-2"></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-dark navbar-custom sticky-top">
+    <div class="container d-flex justify-content-between align-items-center">
+      <div class="d-flex align-items-center gap-2">
+        <a href="index.html" class="btn btn-outline-light btn-sm rounded-pill px-3">
+          <i class="bi bi-house-door"></i> Home
+        </a>
+      </div>
+
+      <a class="navbar-brand d-flex align-items-center gap-2 m-0" href="index.html">
+        <span class="p-1 rounded-2 bg-dark border border-secondary border-opacity-25 shadow-sm d-inline-flex">
+          <i class="bi bi-lightning-charge-fill text-success"></i>
+        </span>
+        <span class="brand-badge fs-5">CeroDistancia</span>
+      </a>
+
+      <button class="btn btn-outline-danger btn-sm rounded-pill px-3" id="logoutBtn">
+        <i class="bi bi-box-arrow-right"></i> Salir
+      </button>
+    </div>
+  </nav>
+
+  <div class="container py-5 position-relative" style="z-index: 1;">
+
+    <!-- BIENVENIDA -->
+    <div class="panel-header-box mb-4 d-flex justify-content-between align-items-center flex-wrap gap-3">
+      <div>
+        <h3 class="fw-bold text-white mb-1">
+          Hola, <span id="userEmail" class="text-gradient">Usuario</span> 👋
+        </h3>
+        <p class="text-muted small mb-0">
+          Gestioná tus tiendas, productos, logo y pedidos desde tu panel central.
+        </p>
+      </div>
+
+      <div class="d-flex align-items-center gap-2">
+        <button class="btn-primary-action btn-sm py-2 px-3" id="crearTiendaBtn">
+          <i class="bi bi-plus-circle"></i>
+          <span>Crear nueva tienda</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- LISTA DE TIENDAS -->
+    <div id="listaTiendas" class="row g-4"></div>
+
+    <!-- ZONA DE RIESGO -->
+    <div class="mt-5 pt-4 border-top border-secondary border-opacity-25">
+      <div class="p-4 rounded-4 bg-danger bg-opacity-10 border border-danger border-opacity-25 d-flex justify-content-between align-items-center flex-wrap gap-3">
+        <div>
+          <h6 class="fw-bold text-danger mb-1">Zona Peligrosa</h6>
+          <p class="small text-muted mb-0">Eliminar tu cuenta borrará todas tus tiendas, productos y suscripciones activas.</p>
+        </div>
+        <button class="btn btn-outline-danger btn-sm rounded-pill px-3" id="btnEliminarCuenta">
+          <i class="bi bi-person-x"></i> Eliminar mi cuenta
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MODAL VISTA PREVIA -->
+  <div class="modal fade" id="modalPreview" tabindex="-1">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+      <div class="modal-content bg-dark text-white border border-secondary border-opacity-25">
+        <div class="modal-header border-secondary border-opacity-25">
+          <h5 class="modal-title fw-bold">Vista Previa de la Tienda</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body p-0">
+          <iframe id="iframePreview" src="" style="width:100%; height:80vh; border:none;"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPT LOGIC -->
+  <script type="module">
+    import { auth } from "./firebase.js";
+    import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        window.location.href = "login.html";
+        return;
+      }
+
+      const uid = user.uid;
+      const email = user.email;
+
+      const span = document.getElementById("userEmail");
+      if (span) span.innerText = email || "Usuario";
+
+      // ADMIN PANEL LINK
+      if (email === "oscarns@gmail.com") {
+        const welcomeBox = document.querySelector(".panel-header-box");
+        const btnAdmin = document.createElement("a");
+        btnAdmin.href = "admin.html";
+        btnAdmin.className = "btn btn-outline-warning btn-sm rounded-pill ms-2";
+        btnAdmin.innerHTML = '<i class="bi bi-shield-lock"></i> Panel Administrador';
+        welcomeBox.appendChild(btnAdmin);
+      }
+
+      // CARGAR TIENDAS
+      fetch("backend/get_tiendas.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ uid, email })
+      })
+        .then(res => res.json())
+        .then(tiendas => {
+          const cont = document.getElementById("listaTiendas");
+          cont.innerHTML = "";
+
+          if (!Array.isArray(tiendas) || tiendas.length === 0) {
+            cont.innerHTML = `
+              <div class="col-12">
+                <div class="p-5 text-center rounded-4 border border-secondary border-opacity-25 bg-dark bg-opacity-50">
+                  <i class="bi bi-shop fs-1 text-success mb-3 d-block"></i>
+                  <h5 class="text-white fw-bold">Aún no tenés ninguna tienda creada</h5>
+                  <p class="text-muted small mb-4">Comenzá ahora creando tu catálogo online en menos de 2 minutos.</p>
+                  <button class="btn-primary-action mx-auto" onclick="location.href='create_tienda.html'">
+                    <span>Crear mi primera tienda</span>
+                    <i class="bi bi-arrow-right"></i>
+                  </button>
+                </div>
+              </div>`;
+            return;
+          }
+
+          let tieneSuscripcionActiva = false;
+          tiendas.forEach(tienda => {
+            const tiendaEstaActiva = (tienda.activa == 1 || tienda.activa == "1" || tienda.estado == 'activa');
+            if (tiendaEstaActiva) tieneSuscripcionActiva = true;
+
+            const badge = tiendaEstaActiva
+              ? `<span class="badge bg-success bg-opacity-25 text-success border border-success border-opacity-25 px-2 py-1">ACTIVA</span>`
+              : `<span class="badge bg-warning bg-opacity-25 text-warning border border-warning border-opacity-25 px-2 py-1">MODO DEMO</span>`;
+
+            const url = tiendaEstaActiva
+              ? tienda.url_publica
+              : "Suscribite para habilitar tu enlace público";
+
+            cont.innerHTML += `
+              <div class="col-12 col-lg-6">
+                <div class="tienda-control-card">
+                  <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h5 class="fw-bold text-white mb-0">${tienda.nombre}</h5>
+                    ${badge}
+                  </div>
+
+                  <p class="text-muted small mb-3">
+                    ${tienda.descripcion || "Sin descripción cargada"}
+                  </p>
+
+                  <div class="mb-3 ${tiendaEstaActiva ? '' : 'd-none'}">
+                    <small class="text-muted d-block mb-1">Enlace de tu tienda</small>
+                    <div class="input-group input-group-sm">
+                      <input class="form-control form-control-dark" value="${url}" readonly ${!tiendaEstaActiva ? "disabled" : ""}>
+                      ${tiendaEstaActiva ? `
+                        <button class="btn btn-outline-secondary" onclick="copiarUrl('${tienda.url_publica}')" title="Copiar">
+                          <i class="bi bi-clipboard"></i>
+                        </button>
+                        <button class="btn btn-outline-secondary" onclick="compartirUrl('${tienda.nombre}', '${tienda.url_publica}')" title="Compartir">
+                          <i class="bi bi-share"></i>
+                        </button>
+                      ` : ''}
+                    </div>
+                  </div>
+
+                  <div class="d-flex gap-2 flex-wrap mt-3 pt-3 border-top border-secondary border-opacity-25">
+                    <button class="btn btn-success btn-sm rounded-pill fw-semibold"
+                      onclick="location.href='armar_tienda.html?slug=${tienda.slug}'">
+                      <i class="bi bi-pencil-square"></i> Gestionar Productos y Logo
+                    </button>
+
+                    <button class="btn btn-outline-light btn-sm rounded-pill"
+                      onclick="verPreview('${tienda.slug}')">
+                      <i class="bi bi-eye"></i> Vista previa
+                    </button>
+
+                    ${tiendaEstaActiva ? `
+                      <button class="btn btn-info btn-sm rounded-pill text-dark fw-semibold"
+                        onclick="window.open('${tienda.url_publica}','_blank')">
+                        <i class="bi bi-box-arrow-up-right"></i> Abrir online
+                      </button>
+                    ` : `
+                      <button class="btn btn-primary btn-sm rounded-pill fw-semibold"
+                        onclick="suscribirse(${tienda.id})">
+                        <i class="bi bi-lightning-fill"></i> Suscribirse
+                      </button>
+                    `}
+
+                    <button class="btn btn-link text-danger text-decoration-none btn-sm ms-auto small"
+                      onclick="borrarTienda(${tienda.id}, '${tienda.nombre}')">
+                      <i class="bi bi-trash"></i> Eliminar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            `;
+          });
+
+          if (tieneSuscripcionActiva) {
+            const welcomeBox = document.querySelector(".panel-header-box");
+            const btnSoporte = document.createElement("a");
+            btnSoporte.href = "https://wa.me/542944859604?text=Soporte%20CeroDistancia";
+            btnSoporte.target = "_blank";
+            btnSoporte.className = "btn btn-outline-success btn-sm rounded-pill ms-2";
+            btnSoporte.innerHTML = '<i class="bi bi-whatsapp"></i> Soporte WhatsApp';
+            welcomeBox.appendChild(btnSoporte);
+          }
+        })
+        .catch(() => {
+          alert("Error cargando tus tiendas");
+        });
+
+      // LOGOUT
+      const logoutBtn = document.getElementById("logoutBtn");
+      if (logoutBtn) {
+        logoutBtn.onclick = () => {
+          auth.signOut().then(() => {
+            window.location.href = "index.html";
+          });
+        };
+      }
+
+      // ELIMINAR CUENTA
+      const btnEliminar = document.getElementById("btnEliminarCuenta");
+      if (btnEliminar) {
+        btnEliminar.onclick = async () => {
+          const conf = confirm("⚠️ ¿ESTÁS COMPLETAMENTE SEGURO?\n\nEsta acción eliminará para siempre tus tiendas, productos y suscripciones.");
+          if (!conf) return;
+
+          try {
+            const res = await fetch("backend/eliminar_mi_cuenta.php", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ uid, email })
+            });
+            const data = await res.json();
+            if (data.ok) {
+              alert("Tu cuenta y tiendas han sido eliminadas.");
+              await auth.signOut();
+              window.location.href = "index.html";
+            } else {
+              alert("Error: " + (data.error || "No se pudo eliminar la cuenta"));
+            }
+          } catch (e) {
+            alert("Error al procesar la solicitud.");
+          }
+        };
+      }
+    });
+
+    window.suscribirse = function(tienda_id) {
+      fetch("backend/crear_suscripcion_mp.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ tienda_id })
+      })
+        .then(r => r.json())
+        .then(d => {
+          if (d.ok && d.init_point) {
+            window.location.href = d.init_point;
+          } else {
+            alert("Error al iniciar la suscripción");
+          }
+        });
+    };
+
+    window.borrarTienda = function(id, nombre) {
+      if (!confirm(`¿Estás seguro de eliminar "${nombre}"? Esta acción cancelará tu suscripción activa y borrará el catálogo.`)) return;
+
+      fetch("backend/eliminar_tienda.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `id=${id}`
+      })
+        .then(r => r.json())
+        .then(d => {
+          if (d.ok) {
+            alert("Tienda eliminada correctamente.");
+            location.reload();
+          } else {
+            alert("Error: " + (d.error || "No se pudo eliminar"));
+          }
+        });
+    };
+
+    window.copiarUrl = function(url) {
+      navigator.clipboard.writeText(url).then(() => {
+        alert("¡Enlace copiado al portapapeles!");
+      });
+    };
+
+    window.compartirUrl = function(nombre, url) {
+      if (navigator.share) {
+        navigator.share({ title: nombre, text: `Mirá mi catálogo online en ${nombre}`, url: url }).catch(console.error);
+      } else {
+        window.open(`https://wa.me/?text=${encodeURIComponent('Mirá mi tienda: ' + url)}`, '_blank');
+      }
+    };
+
+    document.getElementById("crearTiendaBtn").onclick = () => {
+      window.location.href = "create_tienda.html";
+    };
+
+    window.verPreview = function(slug) {
+      const iframe = document.getElementById("iframePreview");
+      iframe.src = "tienda.php?slug=" + slug + "&preview=true";
+      const modal = new bootstrap.Modal(document.getElementById("modalPreview"));
+      modal.show();
+    };
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

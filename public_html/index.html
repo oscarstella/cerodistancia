@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CeroDistancia | Creá tu tienda online en minutos</title>
+  <meta name="description" content="Creá tu tienda online profesional en cerodistancia.click con catálogo, carrito interactivo y pedidos automáticos directo a tu WhatsApp.">
+
+  <!-- GOOGLE FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- BOOTSTRAP 5 & ICONS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="index.css?v=2.0">
+</head>
+
+<body>
+
+  <!-- AMBIENT GLOW EFFECTS -->
+  <div class="bg-glow-1"></div>
+  <div class="bg-glow-2"></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+        <span class="p-2 rounded-3 bg-dark border border-secondary border-opacity-25 shadow-sm d-inline-flex">
+          <i class="bi bi-lightning-charge-fill text-success fs-5"></i>
+        </span>
+        <span class="brand-badge">CeroDistancia</span>
+      </a>
+
+      <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="como-funciona.html">Cómo funciona</a></li>
+          <li class="nav-item"><a class="nav-link" href="precios.html">Precios</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+          <li class="nav-item"><a class="nav-link" href="login.html">Ingresar</a></li>
+
+          <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+            <a class="btn btn-primary-action btn-sm py-2 px-3" href="login.html">
+              <span>Crear mi tienda</span>
+              <i class="bi bi-arrow-right"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="row align-items-center g-5">
+
+        <!-- Columna Izquierda: Texto y CTA -->
+        <div class="col-lg-6">
+          <div class="hero-pill">
+            <span class="badge-dot"></span>
+            <span>Plataforma 100% autogestionable y rápida</span>
+          </div>
+
+          <h1 class="hero-title">
+            Tu tienda online lista en <span class="text-gradient">minutos</span>, ventas directas a tu <span class="text-gradient">WhatsApp</span>
+          </h1>
+
+          <p class="hero-desc">
+            Diseñada para potenciar comercios, gastronómicos y emprendedores. Conectá tus productos, cobrá fácil y recibí los pedidos ordenados sin intermediarios.
+          </p>
+
+          <div class="d-flex flex-wrap gap-3 hero-btn-group">
+            <a href="login.html" class="btn-primary-action">
+              <span>Empezar mi tienda gratis</span>
+              <i class="bi bi-rocket-takeoff"></i>
+            </a>
+            <a href="como-funciona.html" class="btn-secondary-action">
+              <i class="bi bi-play-circle text-success"></i>
+              <span>Ver cómo funciona</span>
+            </a>
+          </div>
+
+          <div class="d-flex align-items-center gap-4 mt-4 pt-3 border-top border-secondary border-opacity-10 text-muted small">
+            <div class="d-flex align-items-center gap-2">
+              <i class="bi bi-check2-circle text-success fs-5"></i>
+              <span>Activación inmediata</span>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <i class="bi bi-shield-check text-info fs-5"></i>
+              <span>Pagos seguros Mercado Pago</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Columna Derecha: Tarjeta visual interactiva con badges flotantes -->
+        <div class="col-lg-6">
+          <div class="hero-visual-card position-relative">
+            <img src="img/ilustracion2.png" class="hero-img-cover" alt="Demostración CeroDistancia Tienda Online" onerror="this.src='img/ilustracion1.jpeg'">
+
+            <!-- Badge Flotante 1: Notificación WhatsApp -->
+            <div class="float-card-order">
+              <div class="icon-circle-success">
+                <i class="bi bi-whatsapp"></i>
+              </div>
+              <div>
+                <div class="text-white fw-bold small">¡Nuevo Pedido Recibido!</div>
+                <div class="text-muted" style="font-size: 0.75rem;">Mesa #3 · 2x Hamburguesa Deluxe</div>
+              </div>
+            </div>
+
+            <!-- Badge Flotante 2: Mercado Pago -->
+            <div class="float-card-mp">
+              <div class="icon-circle-mp">
+                <i class="bi bi-credit-card-2-front"></i>
+              </div>
+              <div>
+                <div class="text-white fw-bold small">Suscripción Activa</div>
+                <div class="text-info" style="font-size: 0.75rem;">Mercado Pago Verificado</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- BARRA DE CIFRAS / CONFIANZA -->
+  <section class="stats-bar">
+    <div class="container">
+      <div class="row text-center g-4">
+        <div class="col-6 col-md-3 stat-item">
+          <h3 class="text-gradient">0%</h3>
+          <p>Comisiones por venta</p>
+        </div>
+        <div class="col-6 col-md-3 stat-item">
+          <h3 class="text-gradient">&lt; 3 min</h3>
+          <p>Configuración inicial</p>
+        </div>
+        <div class="col-6 col-md-3 stat-item">
+          <h3 class="text-gradient">100%</h3>
+          <p>Directo a tu WhatsApp</p>
+        </div>
+        <div class="col-6 col-md-3 stat-item">
+          <h3 class="text-gradient">24/7</h3>
+          <p>Catálogo siempre online</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN: CÓMO FUNCIONA -->
+  <section class="py-5 my-4">
+    <div class="container py-4">
+      <div class="text-center mb-5">
+        <span class="section-badge">Paso a paso</span>
+        <h2 class="section-title">¿Cómo empezar en CeroDistancia?</h2>
+        <p class="text-muted mx-auto" style="max-width: 550px;">
+          Todo el proceso está pensado para ser intuitivo, simple y sin conocimientos técnicos requeridos.
+        </p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="feature-card">
+            <span class="feature-step-num">01</span>
+            <div class="feature-icon-wrapper">
+              <i class="bi bi-shop-window"></i>
+            </div>
+            <h4 class="fw-bold text-white mb-2">1. Creá tu enlace</h4>
+            <p class="text-muted small mb-0">
+              Registrás tu negocio y obtenés tu URL exclusiva dentro de <span class="text-success fw-semibold">cerodistancia.click/tu-tienda</span> al instante.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="feature-card">
+            <span class="feature-step-num">02</span>
+            <div class="feature-icon-wrapper">
+              <i class="bi bi-box-seam"></i>
+            </div>
+            <h4 class="fw-bold text-white mb-2">2. Cargá tu catálogo</h4>
+            <p class="text-muted small mb-0">
+              Subí fotos, nombres, precios y descripciones en tu panel de control de forma súper rápida y amigable.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="feature-card">
+            <span class="feature-step-num">03</span>
+            <div class="feature-icon-wrapper">
+              <i class="bi bi-whatsapp"></i>
+            </div>
+            <h4 class="fw-bold text-white mb-2">3. Vendé sin comisiones</h4>
+            <p class="text-muted small mb-0">
+              Tus compradores eligen productos, agregan al carrito interactivo y el pedido llega formateado directo a tu WhatsApp.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN DESTACADA: IMAGEN + BENEFICIOS -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row g-5 align-items-center">
+        <div class="col-lg-6">
+          <div class="position-relative">
+            <img src="img/ilustracion1.jpeg" class="img-fluid rounded-4 shadow-lg border border-secondary border-opacity-25 w-100" style="object-fit: cover; max-height: 440px;" alt="Panel y tienda CeroDistancia">
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <span class="section-badge">Todo incluido</span>
+          <h2 class="section-title">Todo lo que tu comercio necesita para despegar</h2>
+          <p class="text-muted mb-4">
+            Dejá atrás los PDFs pesados y las listas desactualizadas. Ofrecele a tus clientes una experiencia moderna, rápida y adaptable a cualquier celular o computadora.
+          </p>
+
+          <div class="benefit-list-item">
+            <div class="benefit-check"><i class="bi bi-check-lg"></i></div>
+            <div>
+              <h6 class="text-white fw-bold mb-1">Catálogo interactivo con carrito de compras</h6>
+              <p class="text-muted small mb-0">Tus clientes suman artículos fácilmente y ven el total actualizado en tiempo real.</p>
+            </div>
+          </div>
+
+          <div class="benefit-list-item">
+            <div class="benefit-check"><i class="bi bi-check-lg"></i></div>
+            <div>
+              <h6 class="text-white fw-bold mb-1">Panel de control autogestionable</h6>
+              <p class="text-muted small mb-0">Modificá precios, desactivá productos agotados o cambiá tus datos en cualquier momento.</p>
+            </div>
+          </div>
+
+          <div class="benefit-list-item">
+            <div class="benefit-check"><i class="bi bi-check-lg"></i></div>
+            <div>
+              <h6 class="text-white fw-bold mb-1">Suscripción transparente y económica</h6>
+              <p class="text-muted small mb-0">Un costo mensual fijo mediante suscripción automática de Mercado Pago sin comisiones sobre ventas.</p>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-2">
+            <a href="login.html" class="btn-primary-action">
+              <span>Quiero mi tienda ahora</span>
+              <i class="bi bi-chevron-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BANNER CTA FINAL -->
+  <section class="py-5">
+    <div class="container">
+      <div class="cta-banner text-center">
+        <h2 class="display-6 fw-bold text-white mb-3">¿Listo para modernizar tu negocio hoy?</h2>
+        <p class="text-light text-opacity-75 fs-5 mx-auto mb-4" style="max-width: 620px;">
+          Unite a los comercios que ya están recibiendo sus pedidos organizados por WhatsApp.
+        </p>
+        <div class="d-flex justify-content-center flex-wrap gap-3">
+          <a href="login.html" class="btn btn-light text-success fw-bold px-4 py-3 rounded-3 shadow">
+            Crear tienda ahora <i class="bi bi-arrow-right ms-1"></i>
+          </a>
+          <a href="contacto.html" class="btn btn-outline-light px-4 py-3 rounded-3">
+            Hacer una consulta
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row g-4 align-items-center">
+        <div class="col-md-6 text-center text-md-start">
+          <div class="brand-badge mb-2">CeroDistancia</div>
+          <p class="small text-muted mb-0">Plataforma de tiendas online y catálogos interactivos para WhatsApp.</p>
+        </div>
+        <div class="col-md-6 text-center text-md-end">
+          <div class="d-flex justify-content-center justify-content-md-end gap-3 small">
+            <a href="como-funciona.html">Cómo funciona</a>
+            <a href="precios.html">Precios</a>
+            <a href="contacto.html">Contacto</a>
+            <a href="login.html">Ingreso</a>
+          </div>
+          <p class="small text-muted mt-2 mb-0">© 2025 CeroDistancia.click – Todos los derechos reservados</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- BOOTSTRAP JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- FIREBASE AUTH SCRIPT -->
+  <script type="module">
+    import { auth } from "./firebase.js";
+    import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+    document.addEventListener("DOMContentLoaded", async () => {
+      const navList = document.querySelector("#navMenu ul");
+      if (!navList) return;
+
+      onAuthStateChanged(auth, async (user) => {
+        if (!user) return;
+
+        const uid = user.uid;
+        const email = user.email;
+
+        // Ocultar botones de login y registro cuando hay sesión activa
+        document.querySelectorAll('a[href="login.html"]').forEach(a => {
+          if (a.parentElement && a.parentElement.tagName === 'LI') {
+            a.parentElement.style.display = 'none';
+          } else {
+            a.style.display = 'none';
+          }
+        });
+
+        // Contenedor de usuario activo en el Navbar (Diseño moderno estilo Dropdown Pill)
+        const userBox = document.createElement("li");
+        userBox.classList.add("nav-item", "dropdown", "ms-lg-3", "mt-2", "mt-lg-0");
+
+        userBox.innerHTML = `
+          <a class="nav-link dropdown-toggle d-inline-flex align-items-center gap-2 px-3 py-2 rounded-pill bg-dark bg-opacity-75 border border-secondary border-opacity-25 shadow-sm text-white" 
+             href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 0.9rem;">
+            <span class="d-inline-flex align-items-center justify-content-center rounded-circle bg-success text-white" style="width: 26px; height: 26px; font-size: 0.8rem;">
+              <i class="bi bi-person-fill"></i>
+            </span>
+            <span class="fw-semibold text-truncate" style="max-width: 170px;">${email}</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark border border-secondary border-opacity-25 shadow-lg rounded-4 p-2 mt-2" style="min-width: 230px;">
+            <li class="px-3 py-2 border-bottom border-secondary border-opacity-25 mb-1">
+              <small class="text-muted d-block" style="font-size: 0.72rem;">Cuenta conectada</small>
+              <div class="fw-bold text-truncate text-white small">${email}</div>
+            </li>
+            <li>
+              <a class="dropdown-item rounded-3 py-2 d-flex align-items-center gap-2 text-white" href="panel.html">
+                <i class="bi bi-speedometer2 text-success"></i>
+                <span class="fw-semibold">Ir a Mi Panel</span>
+              </a>
+            </li>
+            <li id="menuVerTiendaItem" class="d-none">
+              <!-- Se inyecta link a la tienda -->
+            </li>
+            <li><hr class="dropdown-divider border-secondary border-opacity-25 my-1"></li>
+            <li>
+              <button id="btnLogout" class="dropdown-item rounded-3 py-2 d-flex align-items-center gap-2 text-danger">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Cerrar sesión</span>
+              </button>
+            </li>
+          </ul>
+        `;
+
+        navList.appendChild(userBox);
+
+        // Evento de Logout
+        const btnLogout = document.getElementById("btnLogout");
+        if (btnLogout) {
+          btnLogout.addEventListener("click", () => {
+            auth.signOut().then(() => {
+              window.location.reload();
+            });
+          });
+        }
+
+        // Obtener tienda creada si existe para añadir al dropdown
+        try {
+          const res = await fetch("backend/get_tiendas.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ uid })
+          });
+
+          const tiendas = await res.json();
+          if (Array.isArray(tiendas) && tiendas.length > 0) {
+            const tienda = tiendas[0];
+            const itemTienda = document.getElementById("menuVerTiendaItem");
+            if (itemTienda) {
+              itemTienda.classList.remove("d-none");
+              itemTienda.innerHTML = `
+                <a class="dropdown-item rounded-3 py-2 d-flex align-items-center gap-2 text-info" href="tienda.php?slug=${tienda.slug}" target="_blank">
+                  <i class="bi bi-eye"></i>
+                  <span>Ver mi tienda online</span>
+                </a>
+              `;
+            }
+          }
+        } catch (e) {
+          console.error("Error cargando tiendas:", e);
+        }
+        return;
+      });
+    });
+  </script>
+
+</body>
+
+</html>

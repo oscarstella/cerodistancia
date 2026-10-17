@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Armar Mi Tienda | CeroDistancia</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="index.css?v=2.0">
+
+  <style>
+    .form-box {
+      background: var(--dark-card);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border-glass);
+      border-radius: 20px;
+      padding: 28px;
+      margin-bottom: 25px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    }
+
+    .form-control-dark {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-glass);
+      color: #fff !important;
+      border-radius: 12px;
+      padding: 12px 16px;
+    }
+
+    .form-control-dark:focus {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(16, 185, 129, 0.5);
+      box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
+    }
+
+    .producto-item-card {
+      background: var(--dark-card);
+      border: 1px solid var(--border-glass);
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 16px;
+      transition: all 0.2s ease;
+    }
+
+    .producto-item-card:hover {
+      border-color: rgba(16, 185, 129, 0.4);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- GLOW EFFECTS -->
+  <div class="bg-glow-1"></div>
+  <div class="bg-glow-2"></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-dark navbar-custom sticky-top">
+    <div class="container d-flex justify-content-between align-items-center">
+      <button class="btn btn-outline-light btn-sm rounded-pill px-3" onclick="history.back()">
+        <i class="bi bi-arrow-left"></i> Volver
+      </button>
+      <span class="brand-badge fs-5">Panel de Configuración de Tienda</span>
+      <a href="panel.html" class="btn btn-sm btn-outline-secondary rounded-pill px-3">Mi Panel</a>
+    </div>
+  </nav>
+
+  <div class="container py-4 position-relative" style="max-width: 850px; z-index: 1;">
+
+    <!-- DATOS TIENDA Y LOGO/BANNER -->
+    <div class="form-box">
+      <div class="d-flex align-items-center gap-2 mb-3">
+        <span class="p-2 rounded-3 bg-dark border border-secondary border-opacity-25 shadow-sm text-success">
+          <i class="bi bi-shop fs-5"></i>
+        </span>
+        <div>
+          <h4 class="fw-bold text-white mb-0">Identidad y Portada de tu Tienda</h4>
+          <small class="text-muted">Podés actualizar tu nombre, descripción y cambiar tu logo/portada las veces que quieras</small>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label text-muted small">Nombre de la tienda *</label>
+        <input id="nombreTienda" class="form-control form-control-dark">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label text-muted small">Descripción breve / Slogan</label>
+        <textarea id="descripcionTienda" class="form-control form-control-dark" rows="2" placeholder="Ej: Las mejores hamburguesas artesanales de la ciudad"></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label text-muted small d-block">Logo o Imagen de Cabecera actual</label>
+        <img id="logoPreview" class="rounded-3 border border-secondary border-opacity-25 mb-2" style="max-height: 110px; object-fit: cover; display: none;">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label text-muted small">Subir / Cambiar Logo o Banner Hero (opcional)</label>
+        <input id="logoNuevo" type="file" accept="image/*" class="form-control form-control-dark">
+        <small class="text-muted d-block mt-1" style="font-size: 0.75rem;">Recomendado formato horizontal o cuadrado en JPG/PNG</small>
+      </div>
+
+      <!-- OPCIONES EXTRAS -->
+      <div class="p-3 rounded-3 mt-4 border border-secondary border-opacity-25" style="background: rgba(255,255,255,0.02);">
+        <h6 class="fw-bold text-white mb-1"><i class="bi bi-toggles me-1 text-success"></i> Opciones personalizadas en el Carrito</h6>
+        <p class="text-muted small mb-3">
+          Permite que tus compradores marquen preferencias antes de enviar el WhatsApp.
+        </p>
+
+        <label class="form-label text-muted small">Título de la sección</label>
+        <input id="tituloOpciones" class="form-control form-control-dark mb-3" placeholder="Ej: ¿Desea agregar? / Opciones">
+
+        <label class="form-label text-muted small">Opciones seleccionables (Casillas)</label>
+        <div class="row g-2">
+          <div class="col-md-4">
+            <input id="opcion1" class="form-control form-control-dark" placeholder="Ej: Con Envío a Domicilio">
+          </div>
+          <div class="col-md-4">
+            <input id="opcion2" class="form-control form-control-dark" placeholder="Ej: Cortada en porciones">
+          </div>
+          <div class="col-md-4">
+            <input id="opcion3" class="form-control form-control-dark" placeholder="Ej: Sin sal añadida">
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-primary-action w-100 justify-content-center py-3 mt-4" onclick="guardarDatosTienda()">
+        <i class="bi bi-save"></i>
+        <span>Guardar cambios de la tienda</span>
+      </button>
+
+      <p id="msgTienda" class="text-danger fw-bold mt-2 text-center small mb-0"></p>
+    </div>
+
+    <!-- TELÉFONO WHATSAPP -->
+    <div class="form-box">
+      <div class="d-flex align-items-center gap-2 mb-3">
+        <span class="p-2 rounded-3 bg-dark border border-secondary border-opacity-25 shadow-sm text-success">
+          <i class="bi bi-whatsapp fs-5"></i>
+        </span>
+        <div>
+          <h4 class="fw-bold text-white mb-0">WhatsApp para recibir pedidos *</h4>
+          <small class="text-muted">A este número le llegarán los pedidos listos para preparar</small>
+        </div>
+      </div>
+
+      <div class="row g-2 mb-3">
+        <div class="col-4">
+          <select id="pais" class="form-select form-control-dark">
+            <option value="54">🇦🇷 +54</option>
+            <option value="598">🇺🇾 +598</option>
+            <option value="595">🇵🇾 +595</option>
+            <option value="56">🇨🇱 +56</option>
+            <option value="51">🇵🇪 +51</option>
+          </select>
+        </div>
+        <div class="col-8">
+          <input id="telefono" class="form-control form-control-dark" placeholder="Ej: 91123456789">
+        </div>
+      </div>
+
+      <button class="btn-primary-action w-100 justify-content-center py-3" onclick="guardarTelefono()">
+        <i class="bi bi-check2-circle"></i>
+        <span>Actualizar WhatsApp de ventas</span>
+      </button>
+
+      <p id="msgTel" class="text-danger fw-bold mt-2 text-center small mb-0"></p>
+    </div>
+
+    <!-- CRUD DE PRODUCTOS -->
+    <div class="form-box">
+      <div class="d-flex align-items-center gap-2 mb-3">
+        <span class="p-2 rounded-3 bg-dark border border-secondary border-opacity-25 shadow-sm text-info">
+          <i class="bi bi-box-seam fs-5"></i>
+        </span>
+        <div>
+          <h4 class="fw-bold text-white mb-0" id="tituloFormProd">Agregar o Editar Producto</h4>
+          <small class="text-muted">Gestioná el catálogo, precios, fotos y disponibilidad</small>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label text-muted small">Nombre del producto *</label>
+        <input id="nombre" class="form-control form-control-dark" placeholder="Ej: Burger Doble Cheddar">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label text-muted small">Descripción o ingredientes</label>
+        <textarea id="descripcion" class="form-control form-control-dark" rows="2" placeholder="Ej: Doble medallón de carne, queso cheddar, salsa especial"></textarea>
+      </div>
+
+      <div class="row g-3 mb-3">
+        <div class="col-md-6">
+          <label class="form-label text-muted small">Precio en ARS ($) *</label>
+          <input id="precio" type="number" class="form-control form-control-dark" min="0" step="0.01" placeholder="Ej: 8500">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label text-muted small">Foto del producto</label>
+          <input id="imagen" type="file" accept="image/*" class="form-control form-control-dark">
+        </div>
+      </div>
+
+      <div class="form-check form-switch mb-4 p-3 rounded-3 bg-dark bg-opacity-50 border border-secondary border-opacity-25 ms-0">
+        <input class="form-check-input ms-0 me-3" type="checkbox" id="activo" checked style="cursor: pointer;">
+        <label class="form-check-label text-white fw-semibold" for="activo">Producto activo / Disponible con Stock</label>
+      </div>
+
+      <button id="btnGuardarProducto" class="btn-primary-action w-100 justify-content-center py-3" onclick="guardarProducto()">
+        <i class="bi bi-plus-circle"></i>
+        <span>Agregar Producto</span>
+      </button>
+
+      <div id="zonaEdicion" class="mt-3 text-warning fw-semibold text-center d-none">
+        <span>✏️ Modo edición activado.</span>
+        <button type="button" class="btn btn-link text-warning p-0 ms-2" onclick="cancelarEdicion()">Cancelar y volver a nuevo</button>
+      </div>
+
+      <p id="msg" class="text-danger fw-bold mt-2 text-center small mb-0"></p>
+    </div>
+
+    <!-- LISTADO DE PRODUCTOS CARGADOS -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h4 class="fw-bold text-white mb-0">Tus Productos Cargados</h4>
+      <span class="text-muted small" id="cantProdsCargados"></span>
+    </div>
+
+    <div id="listaProductos"></div>
+
+    <!-- BOTONES DE ACCIÓN FINAL -->
+    <div class="form-box text-center mt-4">
+      <button class="btn-primary-action w-100 justify-content-center py-3 mb-3" onclick="finalizar()">
+        <i class="bi bi-eye"></i>
+        <span>Ver mi tienda terminada</span>
+      </button>
+
+      <button class="btn-secondary-action w-100 justify-content-center py-3" onclick="location.href='panel.html'">
+        <i class="bi bi-speedometer2"></i>
+        <span>Volver a mi Panel Principal</span>
+      </button>
+    </div>
+
+  </div>
+
+  <script>
+    let tienda_slug = "";
+    let tienda_id = "";
+    let productoEditandoId = null;
+    let productosCache = [];
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const params = new URLSearchParams(window.location.search);
+      tienda_slug = params.get("slug");
+
+      if (!tienda_slug) {
+        alert("Error: tienda no identificada");
+        return;
+      }
+
+      fetch("./backend/get_tienda.php?slug=" + tienda_slug)
+        .then(res => res.json())
+        .then(tienda => {
+          if (!tienda || tienda.error) {
+            alert("No se encontró la tienda");
+            return;
+          }
+
+          tienda_id = tienda.id;
+
+          document.getElementById("nombreTienda").value = tienda.nombre || "";
+          document.getElementById("descripcionTienda").value = tienda.descripcion || "";
+
+          if (tienda.logo) {
+            const logoPrev = document.getElementById("logoPreview");
+            logoPrev.src = "./" + tienda.logo;
+            logoPrev.style.display = "block";
+          }
+
+          document.getElementById("tituloOpciones").value = tienda.titulo_opciones || "";
+          document.getElementById("opcion1").value = tienda.opcion1 || "";
+          document.getElementById("opcion2").value = tienda.opcion2 || "";
+          document.getElementById("opcion3").value = tienda.opcion3 || "";
+
+          if (tienda.telefono) {
+            const tel = tienda.telefono.trim();
+            const prefijos = ["54", "598", "595", "56", "51"];
+            const paisInput = document.getElementById("pais");
+            const telInput = document.getElementById("telefono");
+
+            let pref = prefijos.find(p => tel.startsWith(p));
+            if (pref) {
+              paisInput.value = pref;
+              telInput.value = tel.substring(pref.length);
+            } else {
+              telInput.value = tel;
+            }
+          }
+
+          cargarProductos();
+        });
+    });
+
+    async function guardarDatosTienda() {
+      const nombre = document.getElementById("nombreTienda").value.trim();
+      const descripcion = document.getElementById("descripcionTienda").value.trim();
+      const titulo_opciones = document.getElementById("tituloOpciones").value.trim();
+      const opcion1 = document.getElementById("opcion1").value.trim();
+      const opcion2 = document.getElementById("opcion2").value.trim();
+      const opcion3 = document.getElementById("opcion3").value.trim();
+      const logoFile = document.getElementById("logoNuevo").files[0];
+      const msgTienda = document.getElementById("msgTienda");
+
+      if (!nombre) {
+        msgTienda.innerText = "El nombre de la tienda es obligatorio.";
+        return;
+      }
+
+      const fd = new FormData();
+      fd.append("tienda_id", tienda_id);
+      fd.append("nombre", nombre);
+      fd.append("descripcion", descripcion);
+      fd.append("titulo_opciones", titulo_opciones);
+      fd.append("opcion1", opcion1);
+      fd.append("opcion2", opcion2);
+      fd.append("opcion3", opcion3);
+
+      if (logoFile) fd.append("logo", logoFile);
+
+      try {
+        const res = await fetch("./backend/guardar_datos_tienda.php", { method: "POST", body: fd });
+        const data = await res.json();
+
+        if (data.ok) {
+          msgTienda.innerText = "";
+          alert("¡Datos y portada de la tienda actualizados!");
+          if (data.logo_ruta) {
+            const logoPrev = document.getElementById("logoPreview");
+            logoPrev.src = "./" + data.logo_ruta;
+            logoPrev.style.display = "block";
+            document.getElementById("logoNuevo").value = "";
+          }
+        } else {
+          msgTienda.innerText = "Error guardando los datos.";
+        }
+      } catch (e) {
+        msgTienda.innerText = "Error de conexión.";
+      }
+    }
+
+    async function guardarTelefono() {
+      const pais = document.getElementById("pais").value;
+      const numero = document.getElementById("telefono").value.trim();
+      const msgTel = document.getElementById("msgTel");
+
+      if (!numero) {
+        msgTel.innerText = "El número es obligatorio.";
+        return;
+      }
+
+      const soloNum = numero.replace(/[^0-9]/g, "");
+      const telefonoFinal = pais + soloNum;
+
+      const fd = new FormData();
+      fd.append("tienda_id", tienda_id);
+      fd.append("telefono", telefonoFinal);
+
+      const res = await fetch("./backend/guardar_telefono.php", { method: "POST", body: fd });
+      const data = await res.json();
+
+      if (data.ok) {
+        msgTel.innerText = "";
+        alert("¡WhatsApp de ventas actualizado!");
+      } else {
+        msgTel.innerText = "Error guardando el teléfono.";
+      }
+    }
+
+    function cargarProductos() {
+      fetch("./backend/get_productos.php?tienda_id=" + tienda_id)
+        .then(res => res.json())
+        .then(productos => {
+          productosCache = productos || [];
+          const cont = document.getElementById("listaProductos");
+          const cantTxt = document.getElementById("cantProdsCargados");
+          cont.innerHTML = "";
+
+          if (cantTxt) cantTxt.innerText = `${productosCache.length} cargados`;
+
+          if (productosCache.length === 0) {
+            cont.innerHTML = "<div class='text-muted p-4 text-center rounded-3 border border-secondary border-opacity-25 bg-dark bg-opacity-25'>Aún no agregaste ningún producto a este catálogo.</div>";
+            return;
+          }
+
+          productosCache.forEach(prod => {
+            const isActivo = (prod.activo === undefined || prod.activo === null) ? true : (parseInt(prod.activo) === 1);
+
+            cont.innerHTML += `
+              <div class="producto-item-card">
+                <div class="d-flex justify-content-between align-items-start gap-3">
+                  <div class="d-flex gap-3 align-items-center">
+                    ${prod.imagen 
+                      ? `<img src="./${prod.imagen}" class="rounded-3 border border-secondary border-opacity-25" style="width:70px; height:70px; object-fit:cover;">` 
+                      : `<div class="rounded-3 border border-secondary border-opacity-25 d-flex align-items-center justify-content-center bg-secondary bg-opacity-25 text-muted" style="width:70px; height:70px;"><i class="bi bi-box-seam fs-4"></i></div>`
+                    }
+                    <div>
+                      <h5 class="text-white fw-bold mb-1">${prod.nombre}</h5>
+                      <p class="text-muted small mb-1">${prod.descripcion || ""}</p>
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="text-success fw-bold fs-5">$${prod.precio}</span>
+                        ${isActivo 
+                          ? `<span class="badge bg-success bg-opacity-25 text-success border border-success border-opacity-25">En Stock</span>`
+                          : `<span class="badge bg-secondary bg-opacity-50 text-light border border-secondary">Sin Stock</span>`
+                        }
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="d-flex gap-2">
+                    <button class="btn btn-outline-warning btn-sm rounded-pill px-3" onclick="iniciarEdicionProducto(${prod.id})" title="Editar producto">
+                      <i class="bi bi-pencil-square"></i> Editar
+                    </button>
+                    <button class="btn btn-outline-danger btn-sm rounded-pill" onclick="eliminarProducto(${prod.id}, '${prod.imagen}')" title="Eliminar">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            `;
+          });
+        });
+    }
+
+    function iniciarEdicionProducto(id) {
+      const prod = productosCache.find(p => p.id == id);
+      if (!prod) return;
+
+      productoEditandoId = id;
+      document.getElementById("nombre").value = prod.nombre;
+      document.getElementById("descripcion").value = prod.descripcion;
+      document.getElementById("precio").value = prod.precio;
+      document.getElementById("imagen").value = "";
+      document.getElementById("activo").checked = (parseInt(prod.activo) === 1);
+
+      document.getElementById("btnGuardarProducto").innerHTML =
+        '<i class="bi bi-save"></i> <span>Guardar cambios del producto</span>';
+
+      document.getElementById("zonaEdicion").classList.remove("d-none");
+      document.getElementById("tituloFormProd").innerText = `Editando: ${prod.nombre}`;
+      window.scrollTo({ top: document.getElementById("tituloFormProd").offsetTop - 100, behavior: 'smooth' });
+    }
+
+    function cancelarEdicion() {
+      productoEditandoId = null;
+      document.getElementById("nombre").value = "";
+      document.getElementById("descripcion").value = "";
+      document.getElementById("precio").value = "";
+      document.getElementById("imagen").value = "";
+      document.getElementById("activo").checked = true;
+
+      document.getElementById("btnGuardarProducto").innerHTML =
+        '<i class="bi bi-plus-circle"></i> <span>Agregar Producto</span>';
+
+      document.getElementById("zonaEdicion").classList.add("d-none");
+      document.getElementById("tituloFormProd").innerText = "Agregar o Editar Producto";
+    }
+
+    async function guardarProducto() {
+      const nombre = document.getElementById("nombre").value.trim();
+      const descripcion = document.getElementById("descripcion").value.trim();
+      const precio = document.getElementById("precio").value.trim();
+      const imagen = document.getElementById("imagen").files[0];
+      const msg = document.getElementById("msg");
+
+      if (!nombre || !precio) {
+        msg.innerText = "Nombre y precio son obligatorios.";
+        return;
+      }
+
+      const fd = new FormData();
+      let url = "";
+
+      if (productoEditandoId === null) {
+        fd.append("tienda_id", tienda_id);
+        url = "./backend/guardar_producto.php";
+      } else {
+        fd.append("id", productoEditandoId);
+        url = "./backend/editar_producto.php";
+      }
+
+      fd.append("nombre", nombre);
+      fd.append("descripcion", descripcion);
+      fd.append("precio", precio);
+      const isActivo = document.getElementById("activo").checked ? 1 : 0;
+      fd.append("activo", isActivo);
+
+      if (imagen) fd.append("imagen", imagen);
+
+      const res = await fetch(url, { method: "POST", body: fd });
+      const data = await res.json();
+
+      if (data.ok) {
+        msg.innerText = "";
+        cargarProductos();
+        cancelarEdicion();
+      } else {
+        msg.innerText = "Error guardando el producto.";
+      }
+    }
+
+    async function eliminarProducto(id, imagen) {
+      if (!confirm("¿Eliminar este producto?")) return;
+
+      const fd = new FormData();
+      fd.append("id", id);
+      fd.append("imagen", imagen);
+
+      const res = await fetch("./backend/eliminar_producto.php", { method: "POST", body: fd });
+      const data = await res.json();
+
+      if (data.ok) cargarProductos();
+      else alert("No se pudo eliminar el producto");
+    }
+
+    function finalizar() {
+      window.location.href = "tienda.php?slug=" + tienda_slug;
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

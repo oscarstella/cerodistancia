@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Pizza Bariloche | CeroDistancia</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+body { background:#f0f2f5; }
+
+/* Cards */
+.producto-card {
+  background:white;
+  padding:10px;
+  border-radius:15px;
+  box-shadow:0 2px 10px rgba(0,0,0,.1);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.producto-img {
+  width:100%;
+  height:150px;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+.prod-container {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+
+.btn-verde {
+  background:#0fa956;
+  color:white;
+  border:none;
+}
+
+#btnCarrito {
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#0fa956;
+  color:white;
+  padding:12px 18px;
+  border-radius:30px;
+  font-weight:bold;
+  display:none;
+  z-index:900;
+}
+</style>
+</head>
+
+<body class="container py-3">
+
+<h3 class="fw-bold">La Pizza Bariloche</h3>
+
+<!-- ⭐ LOGO CORRECTO (FUNCIONA EN LOCALHOST Y HOSTINGER) -->
+<div style="
+  width:100%;
+  height:150px;
+  background:url('../../uploads/logo_1763255743.webp') center/cover;
+  border-radius:10px;">
+</div>
+
+
+<div class="card p-3 my-3">
+  <h5 class="fw-bold">Descripción</h5>
+  <p>La mejor Pizza de la Patagonia</p>
+</div>
+
+<h4 class="fw-bold mt-4 mb-2">Productos</h4>
+
+<div id="listaProductos" class="prod-container"></div>
+
+<button id="btnCarrito" onclick="abrirCarrito()">
+  Ver carrito — Total $0
+</button>
+
+<!-- CARRITO -->
+<div id="carritoModal"
+     style="position:fixed; left:0; right:0; bottom:-100%; height:90%;
+     background:white; border-radius:20px 20px 0 0; padding:20px;
+     transition:bottom .35s ease-in-out; overflow-y:auto; z-index:1000;">
+
+  <div class="d-flex justify-content-between mb-3">
+    <h4>Tu pedido</h4>
+    <button class="btn btn-light" onclick="cerrarCarrito()">✕</button>
+  </div>
+
+  <div id="itemsCarrito"></div>
+
+  <hr>
+  <h5>Total: $<span id="totalCarrito">0</span></h5>
+  <hr>
+
+  <input id="cli_nombre" class="form-control mb-2" placeholder="Nombre *">
+  <input id="cli_apellido" class="form-control mb-2" placeholder="Apellido *">
+  <input id="cli_telefono" class="form-control mb-2" placeholder="WhatsApp *">
+
+  <p id="msgCliente" class="text-danger fw-bold"></p>
+
+  <button class="btn btn-verde w-100 mt-3" onclick="enviarWhatsAppFinal()">
+    Enviar pedido por WhatsApp
+  </button>
+</div>
+
+<script>
+// ⭐ DATOS REEMPLAZADOS POR PHP
+const tienda_id = "3";
+const telefono  = "";
+
+let carrito = [];
+
+document.addEventListener("DOMContentLoaded", () => {
+  cargarProductos();
+  cargarCarrito();
+});
+
+/********* Cargar productos *********/
+function cargarProductos() {
+
+  fetch("/cerodistancia/backend/get_productos.php?tienda_id=" + tienda_id)
+    .then(r => r.json())
+    .then(productos => {
+
+      let html = "";
+
+      productos.forEach(prod => {
+        
+        html += `
+        <div class="producto-card">
+
+          ${
+            prod.imagen
+            ? `<img class="producto-img" src="/cerodistancia/${prod.imagen}">`
+            : ""
+          }
+
+          <h6>${prod.nombre}</h6>
+          <p class="text-muted small">${prod.descripcion || ""}</p>
+          <b>$${prod.precio}</b>
+
+          <button class="btn btn-verde mt-2" onclick="agregar('${prod.nombre}', ${prod.precio})">
+            Agregar
+          </button>
+        </div>`;
+      });
+
+      document.getElementById("listaProductos").innerHTML = html;
+    });
+}
+
+/********* Carrito *********/
+function agregar(nombre, precio) {
+  let item = carrito.find(p => p.nombre === nombre);
+  if (item) item.cantidad++;
+  else carrito.push({ nombre, precio, cantidad:1 });
+
+  actualizar();
+}
+
+function actualizar() {
+  let total = 0;
+  let html = "";
+
+  carrito.forEach((p,i) => {
+    total += p.precio * p.cantidad;
+
+    html += `
+    <div class="d-flex justify-content-between mb-2">
+      <div><b>${p.nombre}</b><br>$${p.precio}</div>
+
+      <div>
+        <button onclick="cant(${i}, -1)" class="btn btn-sm btn-secondary">-</button>
+        ${p.cantidad}
+        <button onclick="cant(${i}, 1)" class="btn btn-sm btn-secondary">+</button>
+      </div>
+    </div>`;
+  });
+
+  document.getElementById("itemsCarrito").innerHTML = html;
+  document.getElementById("totalCarrito").innerText = total;
+
+  document.getElementById("btnCarrito").style.display = total > 0 ? "block" : "none";
+
+  guardarCarrito();
+}
+
+function cant(i, n){
+  carrito[i].cantidad += n;
+  if (carrito[i].cantidad <= 0) carrito.splice(i,1);
+  actualizar();
+}
+
+/********* abrir/cerrar carrito *********/
+function abrirCarrito(){
+  document.getElementById("carritoModal").style.bottom = "0";
+}
+function cerrarCarrito(){
+  document.getElementById("carritoModal").style.bottom = "-100%";
+}
+
+/********* LocalStorage *********/
+function guardarCarrito(){
+  localStorage.setItem("carrito_" + tienda_id, JSON.stringify(carrito));
+}
+function cargarCarrito(){
+  const data = localStorage.getItem("carrito_" + tienda_id);
+  if (data) carrito = JSON.parse(data);
+  actualizar();
+}
+
+/********* WHATSAPP FINAL *********/
+function enviarWhatsAppFinal(){
+  const n = cli_nombre.value.trim();
+  const a = cli_apellido.value.trim();
+  const t = cli_telefono.value.trim();
+
+  if (!n || !a || !t){
+    msgCliente.innerText = "Completa los datos.";
+    return;
+  }
+
+  let msg = "🛒 *Nuevo pedido*%0A%0A";
+
+  carrito.forEach(p=>{
+     msg += `${p.cantidad} x ${p.nombre} — $${p.precio * p.cantidad}%0A`;
+  });
+
+  msg += `%0A*Cliente:* ${n} ${a}%0A📞 ${t}`;
+
+  window.open(`https://wa.me/${telefono}?text=${msg}`,"_blank");
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1564 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Península Store | CeroDistancia</title>
+
+  <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #0fa956;
+      --primary-dark: #0a8141;
+      --primary-light: #e6f7ee;
+      --dark: #0f172a;
+      --surface: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --radius-lg: 18px;
+      --radius-md: 14px;
+      --shadow-sm: 0 4px 10px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 12px 28px -4px rgba(0, 0, 0, 0.08);
+      --shadow-glow: 0 8px 25px rgba(15, 169, 86, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #f1f5f9;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* ==============================================================
+       NAVBAR SUPERIOR PRINCIPAL (64px)
+       ============================================================== */
+    .app-header {
+      position: sticky;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-panel-back {
+      border: 1.5px solid #cbd5e1;
+      background: white;
+      color: #334155;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 50px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .btn-panel-back:hover {
+      background: #f8fafc;
+      color: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .brand-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: -0.3px;
+      color: var(--dark);
+      line-height: 1.1;
+    }
+
+    /* CARRITO DE DESTINO EN LA ESQUINA SUPERIOR DERECHA */
+    .cart-target-btn {
+      position: relative;
+      background: #ffffff;
+      border: 1.5px solid var(--border);
+      border-radius: 50px;
+      padding: 8px 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--dark);
+      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .cart-target-btn:hover {
+      border-color: var(--primary);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .cart-target-icon {
+      font-size: 18px;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+    }
+
+    .cart-counter-badge {
+      background: #ef4444;
+      color: white;
+      font-size: 11px;
+      font-weight: 800;
+      min-width: 20px;
+      height: 20px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 5px;
+      box-shadow: 0 2px 6px rgba(239, 68, 68, 0.4);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* Efecto de choque/impacto físico del changuito contra el carrito de la derecha */
+    .cart-target-btn.bump {
+      animation: cartTargetImpact 0.65s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .cart-target-btn.bump .cart-counter-badge {
+      animation: badgePop 0.55s ease-out;
+    }
+
+    @keyframes cartTargetImpact {
+      0% { 
+        transform: scale(1) translateX(0); 
+      }
+      /* Momento exacto del choque físico */
+      25% { 
+        transform: scale(1.28) translateX(8px) rotate(6deg); 
+        border-color: #0fa956; 
+        box-shadow: 0 0 25px rgba(15, 169, 86, 0.6); 
+      }
+      50% { 
+        transform: scale(0.92) translateX(-4px) rotate(-3deg); 
+      }
+      75% { 
+        transform: scale(1.08) translateX(2px) rotate(1deg); 
+      }
+      100% { 
+        transform: scale(1) translateX(0) rotate(0deg); 
+      }
+    }
+
+    @keyframes badgePop {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.5); background: #10b981; }
+      100% { transform: scale(1); }
+    }
+
+    /* ==============================================================
+       SUB-BARRA DE ANIMACIÓN ANGOSTA (~120px)
+       SE ABRE REACTIVAMENTE Y EL CHANGUITO VIAJA DE IZQUIERDA A DERECHA
+       ============================================================== */
+    .anim-bar-container {
+      position: sticky;
+      top: 64px;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 0;
+      opacity: 0;
+      overflow: hidden;
+      background: linear-gradient(180deg, #ffffff 0%, #f0fdf4 100%);
+      border-bottom: 1.5px solid rgba(15, 169, 86, 0.3);
+      z-index: 999;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+      transition: height 0.32s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
+    }
+
+    .anim-bar-container.active {
+      height: 120px;
+      opacity: 1;
+    }
+
+    .anim-bar-track {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .anim-track-line {
+      position: absolute;
+      bottom: 22px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #cbd5e1 10%, #0fa956 50%, #cbd5e1 90%, transparent);
+      opacity: 0.6;
+    }
+
+    .anim-status-label {
+      position: absolute;
+      top: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #0fa956;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      opacity: 0;
+      transform: translateY(-6px);
+      transition: all 0.3s ease;
+    }
+
+    .anim-bar-container.active .anim-status-label {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* 1. Producto entrando a la caja */
+    .anim-product {
+      position: absolute;
+      top: 26px;
+      left: 50%;
+      transform: translateX(-50%) scale(0);
+      background: white;
+      border: 1.5px solid #10b981;
+      padding: 4px 12px;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+      font-size: 12px;
+      font-weight: 700;
+      color: #065f46;
+      z-index: 25;
+      opacity: 0;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    /* 2. Caja compacta */
+    .anim-box {
+      position: absolute;
+      top: 48px;
+      left: 50%;
+      transform: translateX(-50%) scale(0);
+      width: 44px;
+      height: 40px;
+      background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+      border-radius: 8px;
+      box-shadow: 0 6px 14px rgba(180, 83, 9, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 20px;
+      z-index: 20;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .anim-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 8px;
+      height: 100%;
+      background: rgba(254, 243, 199, 0.45);
+    }
+
+    .anim-box::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      width: 100%;
+      height: 8px;
+      background: rgba(254, 243, 199, 0.45);
+    }
+
+    /* 3. Changuito orientado mirando a la DERECHA */
+    .anim-cart {
+      position: absolute;
+      bottom: 18px;
+      left: -120px;
+      right: auto;
+      width: 65px;
+      height: 54px;
+      z-index: 15;
+      pointer-events: none;
+      filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.15));
+    }
+
+    .anim-cart svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* 4. Destello confirmación */
+    .anim-sparkle {
+      position: absolute;
+      top: 45px;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      color: #f59e0b;
+      font-size: 24px;
+      z-index: 30;
+      opacity: 0;
+    }
+
+    /* KEYFRAMES VIAJANDO A LA DERECHA */
+    .animating-active .anim-product {
+      animation: dropProductInBox 0.85s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+
+    .animating-active .anim-box {
+      animation: boxAppears 0.85s ease forwards;
+    }
+
+    .animating-cart .anim-cart {
+      animation: cartRollsToRight 2.3s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+
+    .animating-cart .anim-box {
+      animation: boxEntersAndExitsToRight 2.3s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+
+    .animating-sparkle .anim-sparkle {
+      animation: sparkleFlash 0.55s ease-out forwards;
+    }
+
+    @keyframes dropProductInBox {
+      0% { transform: translateX(-50%) translateY(-30px) scale(0.4); opacity: 0; }
+      40% { transform: translateX(-50%) translateY(0) scale(1.05); opacity: 1; }
+      80% { transform: translateX(-50%) translateY(18px) scale(0.8); opacity: 1; }
+      100% { transform: translateX(-50%) translateY(26px) scale(0); opacity: 0; }
+    }
+
+    @keyframes boxAppears {
+      0% { transform: translateX(-50%) scale(0.3); opacity: 0; }
+      35% { transform: translateX(-50%) scale(1.1); opacity: 1; }
+      60% { transform: translateX(-50%) scale(0.95); opacity: 1; }
+      80% { transform: translateX(-50%) scale(1.12); opacity: 1; }
+      100% { transform: translateX(-50%) scale(1); opacity: 1; }
+    }
+
+    /* CARRITO AVANZA HACIA LA DERECHA RUMBO AL BOTÓN SUPERIOR CON CHOQUE FÍSICO */
+    @keyframes cartRollsToRight {
+      0% { 
+        left: -120px; 
+      }
+      /* Llega al centro y frena para recibir la caja */
+      36% { 
+        left: 50%; 
+        transform: translateX(-50%); 
+      }
+      /* Pausa para que caiga la caja dentro */
+      52% { 
+        left: 50%; 
+        transform: translateX(-50%); 
+      }
+      /* Acelera rodando con fuerza hacia la derecha */
+      85% {
+        left: 88%;
+        transform: translateY(-4px) scale(0.95);
+      }
+      /* Choca en la esquina derecha contra el botón y se funde */
+      100% { 
+        left: 106%; 
+        transform: translateY(-16px) scale(0.8);
+        opacity: 0;
+      }
+    }
+
+    /* LA CAJA DENTRO DEL CHANGUITO SIGUE EL MISMO IMPACTO */
+    @keyframes boxEntersAndExitsToRight {
+      0% { transform: translateX(-50%) scale(1); opacity: 1; }
+      32% { transform: translateX(-50%) scale(1); opacity: 1; }
+      /* Cae adentro del changuito con amortiguación */
+      48% { transform: translateX(-50%) translateY(20px) scale(0.68); opacity: 1; }
+      /* Viaja a la derecha */
+      85% {
+        transform: translateX(calc(-50% + 185px)) translateY(16px) scale(0.62);
+        opacity: 1;
+      }
+      /* Impacta junto al changuito */
+      100% { 
+        transform: translateX(calc(-50% + 250px)) translateY(-2px) scale(0.45); 
+        opacity: 0; 
+      }
+    }
+
+    @keyframes sparkleFlash {
+      0% { transform: translate(-50%, -50%) scale(0) rotate(0deg); opacity: 0; }
+      50% { transform: translate(-50%, -50%) scale(1.3) rotate(90deg); opacity: 1; }
+      100% { transform: translate(-50%, -50%) scale(0.2) rotate(180deg); opacity: 0; }
+    }
+
+    /* ==============================================================
+       BANNER OFICIAL Y DATOS IDÉNTICOS A PRODUCCIÓN
+       ============================================================== */
+    .store-container {
+      max-width: 960px;
+      width: 100%;
+      margin: 20px auto 40px auto;
+      padding: 0 16px;
+    }
+
+    .store-banner {
+      width: 100%;
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+      border-radius: var(--radius-lg);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      margin-bottom: 20px;
+    }
+
+    .store-card-box {
+      background: white;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 20px;
+    }
+
+    /* BARRA DE OPCIONES DE ENVÍO (CONFIGURABLES) */
+    .shipping-options-bar {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-top: 14px;
+    }
+
+    .shipping-pill-btn {
+      background: white;
+      border: 1.5px solid #cbd5e1;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 13px;
+      color: #334155;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      user-select: none;
+    }
+
+    .shipping-pill-btn:hover {
+      border-color: var(--primary);
+      background: #f0fdf4;
+    }
+
+    .shipping-pill-btn.selected {
+      border-color: var(--primary);
+      background: #e6f7ee;
+      color: #065f46;
+      font-weight: 700;
+    }
+
+    /* PANEL CRUD / ADMINISTRADOR COMPLETO DEL COMERCIANTE */
+    .merchant-admin-card {
+      background: #ffffff;
+      border: 2px dashed #0fa956;
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 6px 20px rgba(15, 169, 86, 0.1);
+    }
+
+    .section-admin-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: #0fa956;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 12px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* ==============================================================
+       TARJETAS DE PRODUCTOS MODERNAS (GRID HORIZONTAL CON IMAGEN ARRIBA)
+       ============================================================== */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      padding: 16px;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: #cbd5e1;
+    }
+
+    .prod-img-wrapper {
+      width: 100%;
+      height: 180px;
+      border-radius: 12px;
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      margin-bottom: 14px;
+      border: 1px solid #f1f5f9;
+    }
+
+    .prod-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover .prod-img-wrapper img {
+      transform: scale(1.04);
+    }
+
+    .prod-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(15, 169, 86, 0.12);
+      color: #0fa956;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      z-index: 2;
+    }
+
+    .prod-info {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .prod-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--dark);
+      line-height: 1.35;
+      margin-bottom: 6px;
+    }
+
+    .prod-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.45;
+      margin-bottom: 14px;
+      flex-grow: 1;
+    }
+
+    .prod-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: 12px;
+      border-top: 1px dashed #f1f5f9;
+    }
+
+    .prod-price {
+      font-family: 'Outfit', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .btn-add-cart {
+      background: var(--primary);
+      border: none;
+      color: white;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      border-radius: 50px;
+      padding: 8px 18px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 4px 12px rgba(15, 169, 86, 0.25);
+    }
+
+    .btn-add-cart:hover {
+      background: var(--primary-dark);
+      transform: scale(1.05);
+      box-shadow: 0 6px 16px rgba(15, 169, 86, 0.35);
+    }
+
+    .cant-control-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f8fafc;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 50px;
+      padding: 3px 8px;
+      gap: 8px;
+    }
+
+    .cant-btn {
+      border: none;
+      background: white;
+      color: #0fa956;
+      font-weight: 800;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* MEDIOS DE PAGO DINÁMICOS */
+    .payments-strip {
+      background: white;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      padding: 22px;
+      margin-top: 30px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .payment-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 12px;
+      background: #f8fafc;
+      border: 1.5px solid #e2e8f0;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--dark);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .payment-pill:hover {
+      border-color: var(--primary);
+      background: white;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .payment-pill svg {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+    }
+
+    /* BOTÓN FLOTANTE INFERIOR */
+    #btnCarritoFixed {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #0fa956;
+      color: white;
+      padding: 12px 22px;
+      border-radius: 50px;
+      z-index: 999;
+      box-shadow: 0 4px 14px rgba(15, 169, 86, 0.45);
+      font-weight: 700;
+      font-size: 15px;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    #btnCarritoFixed:hover {
+      transform: scale(1.05);
+      background: #0c8a47;
+    }
+
+    /* MODAL DE CHECKOUT / CARRITO */
+    .modal-backdrop-custom {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 3000;
+      padding: 16px;
+    }
+
+    .modal-box-custom {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      max-width: 480px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+
+    /* Toast */
+    .toast-notice {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--dark);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      z-index: 4000;
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toast-notice.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= NAVBAR SUPERIOR (64px) ================= -->
+  <header class="app-header">
+    <div class="brand-wrap">
+      <a href="javascript:void(0)" class="btn-panel-back">
+        <i class="bi bi-arrow-left"></i> Volver al panel
+      </a>
+      <span class="brand-title" id="navbarStoreTitle">Península Store</span>
+    </div>
+
+    <!-- Botón Destino del Carrito (Esquina Superior Derecha) -->
+    <button class="cart-target-btn" id="headerCartBtn" onclick="abrirModalCarrito()">
+      <span class="cart-target-icon">
+        <i class="bi bi-cart3"></i>
+      </span>
+      <span>Carrito</span>
+      <span class="cart-counter-badge" id="cartCountBadge">0</span>
+    </button>
+  </header>
+
+  <!-- ================= SUB-BARRA DE ANIMACIÓN ANGOSTA (~120px) ================= -->
+  <!-- Rueda de IZQUIERDA a DERECHA hacia el botón superior de Carrito -->
+  <div class="anim-bar-container" id="animBar">
+    <div class="anim-bar-track" id="animTrack">
+      <div class="anim-status-label">
+        <i class="bi bi-box-seam-fill"></i> <span id="statusLabelText">Empacando artículo en tu carrito...</span>
+      </div>
+      <div class="anim-track-line"></div>
+
+      <!-- 1. Producto entrando a la caja -->
+      <div class="anim-product" id="animProduct">
+        <span>📦</span>
+        <span id="animProductName">Artículo</span>
+      </div>
+
+      <!-- 2. Caja compacta -->
+      <div class="anim-box" id="animBox">
+        <i class="bi bi-box2-fill"></i>
+      </div>
+
+      <!-- 3. Destello de confirmación -->
+      <div class="anim-sparkle" id="animSparkle">
+        <i class="bi bi-stars"></i>
+      </div>
+
+      <!-- 4. Changuito que rueda hacia la DERECHA -->
+      <div class="anim-cart" id="animCart">
+        <svg viewBox="0 0 100 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 12H24L36 52H76L86 22H30" stroke="#0fa956" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M35 30H82M38 40H79M46 22V50M60 22V50M74 22V50" stroke="#10b981" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M18 12H8" stroke="#0f172a" stroke-width="5" stroke-linecap="round"/>
+          <path d="M36 52L30 65H80" stroke="#0a8141" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="42" cy="68" r="7" fill="#0f172a" stroke="#ffffff" stroke-width="2.5"/>
+          <circle cx="74" cy="68" r="7" fill="#0f172a" stroke="#ffffff" stroke-width="2.5"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= CONTENEDOR PRINCIPAL ================= -->
+  <main class="store-container">
+
+    <!-- AVISO DE VISTA PREVIA CON ACCESO AL CRUD DEL USUARIO -->
+    <div class="alert alert-primary d-flex align-items-center justify-content-between mb-3 shadow-sm border-0" style="border-radius:12px;">
+      <div>
+        <i class="bi bi-info-circle-fill me-2"></i>
+        <b>Entorno de Desarrollo:</b> Probando nuevo diseño moderno y CRUD del comerciante.
+      </div>
+      <button class="btn btn-sm btn-outline-primary fw-bold" onclick="togglePanelAdmin()">
+        <i class="bi bi-sliders"></i> Panel Administrador del Cliente (CRUD)
+      </button>
+    </div>
+
+    <!-- ================= PANEL CRUD DEL CLIENTE (DESPLEGABLE COMPLETO) ================= -->
+    <div class="merchant-admin-card" id="merchantAdminPanel" style="display:none;">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5 class="fw-bold mb-0 text-success">
+          <i class="bi bi-gear-fill"></i> Panel Administrador de Península Store
+        </h5>
+        <button class="btn-close" onclick="togglePanelAdmin()"></button>
+      </div>
+
+      <p class="text-muted small">
+        Desde este panel el comerciante tiene control absoluto sobre su tienda: edita datos, sube su logo/banner, agrega o modifica productos con fotos, y configura sus medios de cobro:
+      </p>
+
+      <!-- 1. IDENTIDAD DE LA TIENDA Y LOGO/BANNER -->
+      <div class="section-admin-title">
+        <i class="bi bi-shop"></i> 1. Identidad y Banner de la Tienda
+      </div>
+
+      <div class="row g-3 mb-3">
+        <div class="col-md-6">
+          <label class="form-label small fw-bold">Nombre del comercio *</label>
+          <input type="text" id="cfgNombre" class="form-control form-control-sm" value="Península Store" oninput="actualizarDatosEnVivo()">
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label small fw-bold">WhatsApp para pedidos *</label>
+          <input type="text" id="cfgTelefono" class="form-control form-control-sm" value="542944533903" oninput="actualizarDatosEnVivo()">
+        </div>
+
+        <div class="col-md-12">
+          <div class="p-3 bg-white border-2 border-dashed border-success rounded" style="background:#f0fdf4;">
+            <label class="form-label small fw-bold text-success d-flex align-items-center gap-2">
+              <i class="bi bi-image-fill"></i> Subir Logo / Banner de la tienda
+            </label>
+            <div class="d-flex align-items-center gap-3">
+              <div id="adminLogoThumb" style="width:60px; height:60px; border-radius:10px; background-size:cover; background-position:center; border:1px solid #cbd5e1; background-image:url('https://cerodistancia.click/uploads/logo_1776893322_4407.png'); flex-shrink:0;"></div>
+              <div class="flex-grow-1">
+                <input type="file" id="cfgLogoFile" class="form-control form-control-sm" accept="image/*" onchange="previewLogoSubido(this)">
+                <small class="text-muted d-block mt-1">Elegí una imagen para ver cómo cambia el banner de Península Store al instante.</small>
+              </div>
+              <button class="btn btn-sm btn-outline-secondary" type="button" onclick="restablecerLogoDefecto()">Original</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <label class="form-label small fw-bold">Descripción breve</label>
+          <textarea id="cfgDescripcion" class="form-control form-control-sm" rows="2" oninput="actualizarDatosEnVivo()">Venta online de productos electrónicos, accesorios de celulares, iluminación, camping, artículos para el hogar y mucho más!</textarea>
+        </div>
+
+        <div class="col-12">
+          <label class="form-label small fw-bold">Sobre nosotros / Quiénes somos</label>
+          <textarea id="cfgQuienes" class="form-control form-control-sm" rows="2" oninput="actualizarDatosEnVivo()">Somos dos emprendedores de Bariloche estamos en zona km 20 Península San Pedro, hacemos envíos en zona centro a partir de compras desde $35.000 o el costo del envío es de $8.000, comprando cualquier producto.</textarea>
+        </div>
+      </div>
+
+      <!-- 2. CRUD DE PRODUCTOS DEL COMERCIANTE CON SUBIDA DE FOTO -->
+      <div class="section-admin-title">
+        <i class="bi bi-box-seam"></i> 2. Agregar / Editar Producto en el Catálogo
+      </div>
+
+      <div class="p-3 bg-light rounded border mb-3">
+        <div class="row g-2">
+          <div class="col-md-4">
+            <label class="small fw-bold">Nombre del Producto *</label>
+            <input type="text" id="crudProdNombre" class="form-control form-control-sm" placeholder="Ej: Cargador Rápido 20W">
+          </div>
+          <div class="col-md-3">
+            <label class="small fw-bold">Precio ARS ($) *</label>
+            <input type="number" id="crudProdPrecio" class="form-control form-control-sm" placeholder="Ej: 14500">
+          </div>
+          <div class="col-md-5">
+            <label class="small fw-bold">Foto del producto (Archivo o URL)</label>
+            <input type="file" id="crudProdFoto" class="form-control form-control-sm" accept="image/*">
+          </div>
+          <div class="col-12">
+            <label class="small fw-bold">Descripción del Producto</label>
+            <input type="text" id="crudProdDesc" class="form-control form-control-sm" placeholder="Ej: Compatible con iPhone y Android, carga rápida Type-C.">
+          </div>
+          <div class="col-12 mt-2">
+            <button class="btn btn-sm btn-success fw-bold" onclick="guardarNuevoProductoCRUD()">
+              <i class="bi bi-plus-circle"></i> Agregar Producto al Catálogo
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. OPCIONES DE ENTREGA (OPCIONALES) -->
+      <div class="section-admin-title">
+        <i class="bi bi-truck"></i> 3. Opciones de Entrega (Opcional)
+      </div>
+
+      <div class="row g-2 mb-3">
+        <div class="col-12">
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="cfgMostrarEnvios" checked onchange="actualizarDatosEnVivo()">
+            <label class="form-check-label fw-bold small" for="cfgMostrarEnvios">Mostrar sección de opciones de entrega en la tienda</label>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <input type="text" id="cfgOpcion1" class="form-control form-control-sm" value="Retiro en sucursal" oninput="actualizarDatosEnVivo()">
+        </div>
+        <div class="col-md-4">
+          <input type="text" id="cfgOpcion2" class="form-control form-control-sm" value="envío a domicilio $8.000" oninput="actualizarDatosEnVivo()">
+        </div>
+        <div class="col-md-4">
+          <input type="text" id="cfgOpcion3" class="form-control form-control-sm" value="Punto de encuentro" oninput="actualizarDatosEnVivo()">
+        </div>
+      </div>
+
+      <!-- 4. MEDIOS DE PAGO Y COBRO (OPCIONALES) -->
+      <div class="section-admin-title">
+        <i class="bi bi-credit-card"></i> 4. Medios de Cobro &amp; Transferencia (Opcional)
+      </div>
+
+      <div class="row g-2">
+        <div class="col-12">
+          <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="cfgMostrarPagos" checked onchange="actualizarDatosEnVivo()">
+            <label class="form-check-label fw-bold small" for="cfgMostrarPagos">Mostrar medios de pago en la tienda</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label class="small text-muted">Alias Mercado Pago / Bancario</label>
+          <input type="text" id="cfgAliasMP" class="form-control form-control-sm" value="peninsula.mp" oninput="actualizarDatosEnVivo()">
+        </div>
+        <div class="col-md-6">
+          <label class="small text-muted">CBU / CVU</label>
+          <input type="text" id="cfgCvuMP" class="form-control form-control-sm" value="0000003100012345678901" oninput="actualizarDatosEnVivo()">
+        </div>
+      </div>
+    </div>
+
+    <!-- NOMBRE DE LA TIENDA -->
+    <h3 class="fw-bold mb-3" id="displayNombreTienda">Península Store</h3>
+
+    <!-- BANNER CON IMAGEN OFICIAL DEL CLIENTE EN HOSTINGER -->
+    <div class="store-banner" id="bannerImg" style="background-image: url('https://cerodistancia.click/uploads/logo_1776893322_4407.png');"></div>
+
+    <!-- DESCRIPCIÓN Y SOBRE NOSOTROS (COHERENTE Y PROLIJO) -->
+    <div class="store-card-box">
+      <h5 class="fw-bold mb-2">Descripción</h5>
+      <p class="text-muted mb-3" id="displayDescripcion">
+        Venta online de productos electrónicos, accesorios de celulares, iluminación, camping, artículos para el hogar y mucho más!
+      </p>
+
+      <div class="p-3 bg-light rounded border-start border-4 border-success mb-3" id="boxQuienes">
+        <h6 class="fw-bold text-success mb-1">
+          <i class="bi bi-info-circle-fill"></i> Sobre nosotros
+        </h6>
+        <p class="mb-0 text-secondary small" id="displayQuienes">
+          Somos dos emprendedores de Bariloche estamos en zona km 20 Península San Pedro, hacemos envíos en zona centro a partir de compras desde $35.000 o el costo del envío es de $8.000, comprando cualquier producto.
+        </p>
+      </div>
+
+      <!-- OPCIONES DE ENTREGA (OPCIONALES) -->
+      <div class="shipping-options-bar" id="shippingBar">
+        <div class="fw-bold text-dark small mb-2">
+          <i class="bi bi-truck text-success me-1"></i> Opciones de entrega:
+        </div>
+        <div class="d-flex flex-wrap gap-2" id="shippingPillsContainer">
+          <div class="shipping-pill-btn" onclick="togglePill(this)">
+            <i class="bi bi-shop text-success"></i> <span id="lblOpcion1">Retiro en sucursal</span>
+          </div>
+          <div class="shipping-pill-btn" onclick="togglePill(this)">
+            <i class="bi bi-house text-primary"></i> <span id="lblOpcion2">envío a domicilio $8.000</span>
+          </div>
+          <div class="shipping-pill-btn" onclick="togglePill(this)">
+            <i class="bi bi-geo-alt text-warning"></i> <span id="lblOpcion3">Punto de encuentro</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= CATÁLOGO DE PRODUCTOS (CARDS MODERNAS CON IMAGEN ARRIBA) ================= -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h4 class="fw-bold mb-0">
+        <i class="bi bi-grid-fill text-success"></i> Productos
+      </h4>
+      <span class="text-muted small" id="totalProdsLabel">Cargando catálogo...</span>
+    </div>
+
+    <!-- GRILLA DINÁMICA DE PRODUCTOS -->
+    <div id="listaProductos" class="products-grid"></div>
+
+    <!-- ================= MEDIOS DE PAGO Y COBRO (OPCIONAL) ================= -->
+    <div class="payments-strip" id="paymentsStrip">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <h5 class="fw-bold mb-0" style="font-family:'Outfit';">
+          <i class="bi bi-credit-card-2-front-fill text-success"></i> Medios de Pago &amp; Cobro
+        </h5>
+        <span class="badge bg-light text-muted border">Opcional</span>
+      </div>
+      <p class="text-muted small mb-3">
+        Elegí cualquier método para ver los datos y copiar el Alias o CVU con un toque:
+      </p>
+
+      <div class="d-flex flex-wrap gap-2">
+        <!-- Mercado Pago -->
+        <div class="payment-pill" onclick="abrirModalPago('Mercado Pago', 'peninsula.mp', '0000003100012345678901', 'Nicolás Stella', '')">
+          <svg viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="8" fill="#009EE3"/>
+            <path d="M8 17.5C8 14 11 11 16 11C21 11 24 14 24 17.5C24 21 21 23 16 23C13.5 23 11 22 9.5 20.5L8 17.5Z" fill="white"/>
+            <circle cx="13" cy="17" r="2.5" fill="#009EE3"/>
+            <circle cx="19" cy="17" r="2.5" fill="#009EE3"/>
+          </svg>
+          <span>Mercado Pago</span>
+        </div>
+
+        <!-- Personal Pay -->
+        <div class="payment-pill" onclick="abrirModalPago('Personal Pay', 'peninsula.pay', '0000004500098765432100', 'Nicolás Stella', '')">
+          <svg viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="8" fill="#001871"/>
+            <circle cx="16" cy="16" r="8" fill="#00D2C4"/>
+            <path d="M14 12H17C18.6 12 19.5 13 19.5 14.5C19.5 16 18.6 17 17 17H15.5V20H14V12Z" fill="#001871"/>
+          </svg>
+          <span>Personal Pay</span>
+        </div>
+
+        <!-- Ualá -->
+        <div class="payment-pill" onclick="abrirModalPago('Ualá', 'peninsula.uala', '0000006700011223344556', 'Nicolás Stella', '')">
+          <svg viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="8" fill="#FF4259"/>
+            <path d="M11 11V18C11 20.8 13.2 23 16 23C18.8 23 21 20.8 21 18V11H18.5V18C18.5 19.4 17.4 20.5 16 20.5C14.6 20.5 13.5 19.4 13.5 18V11H11Z" fill="white"/>
+          </svg>
+          <span>Ualá</span>
+        </div>
+
+        <!-- Transferencia CBU / CVU -->
+        <div class="payment-pill" onclick="abrirModalPago('Transferencia Bancaria', 'peninsula.galicia', '0070123420000012345678', 'Nicolás Stella (Galicia)', '')">
+          <i class="bi bi-bank2" style="font-size:18px; color:#475569;"></i>
+          <span>Transferencia CBU / CVU</span>
+        </div>
+
+        <!-- Efectivo -->
+        <div class="payment-pill" onclick="abrirModalPago('Efectivo', 'Pago contra entrega', '-', 'Península Store', '')">
+          <i class="bi bi-cash-stack" style="font-size:18px; color:#10b981;"></i>
+          <span>Efectivo al recibir</span>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- BOTÓN FLOTANTE INFERIOR -->
+  <button id="btnCarritoFixed" onclick="abrirModalCarrito()">
+    <i class="bi bi-cart3"></i>
+    <span id="btnCarritoFixedText">Ver carrito (0)</span>
+  </button>
+
+  <!-- ================= MODAL DEL CARRITO / CHECKOUT ================= -->
+  <div class="modal-backdrop-custom" id="modalCarritoBackdrop" onclick="cerrarModalCarrito()">
+    <div class="modal-box-custom" onclick="event.stopPropagation()">
+      <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
+        <h5 class="fw-bold mb-0">
+          <i class="bi bi-bag-check-fill text-success me-2"></i> Tu Pedido
+        </h5>
+        <button class="btn-close" onclick="cerrarModalCarrito()"></button>
+      </div>
+
+      <!-- ÍTEMS DEL CARRITO -->
+      <div id="carritoItemsModal" class="mb-3"></div>
+
+      <!-- TOTAL -->
+      <div class="d-flex justify-content-between align-items-center p-3 bg-light rounded mb-3">
+        <span class="fs-6 fw-bold">Total a abonar:</span>
+        <span class="fs-4 fw-bold text-success">$<span id="totalCarritoSpan">0</span></span>
+      </div>
+
+      <!-- DATOS DEL CLIENTE -->
+      <h6 class="fw-bold mb-2">Datos para el envío:</h6>
+      <input type="text" id="cliNombre" class="form-control form-control-sm mb-2" placeholder="Tu Nombre *">
+      <input type="text" id="cliApellido" class="form-control form-control-sm mb-2" placeholder="Tu Apellido *">
+      <input type="tel" id="cliTelefono" class="form-control form-control-sm mb-3" placeholder="Tu WhatsApp (sin 0 ni 15) *">
+
+      <button class="btn btn-success w-100 py-2 fw-bold" onclick="enviarPedidoFinalWhatsApp()">
+        <i class="bi bi-whatsapp"></i> Finalizar y enviar por WhatsApp
+      </button>
+    </div>
+  </div>
+
+  <!-- MODAL PARA VER / COPIAR DATOS DE PAGO -->
+  <div class="modal-backdrop-custom" id="modalPagoBackdrop" onclick="cerrarModalPago()">
+    <div class="modal-box-custom" onclick="event.stopPropagation()">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5 class="fw-bold mb-0" id="modalPagoTitulo">Datos de Pago</h5>
+        <button class="btn-close" onclick="cerrarModalPago()"></button>
+      </div>
+
+      <div class="bg-light p-3 rounded mb-3 border">
+        <div class="small text-muted">Titular</div>
+        <div class="fw-bold mb-2" id="modalPagoTitular">-</div>
+
+        <div class="small text-muted">Alias</div>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <span class="fw-bold text-success" id="modalPagoAlias">-</span>
+          <button class="btn btn-sm btn-outline-secondary" onclick="copiarTexto('modalPagoAlias')">
+            <i class="bi bi-clipboard"></i> Copiar
+          </button>
+        </div>
+
+        <div class="small text-muted">CBU / CVU</div>
+        <div class="d-flex justify-content-between align-items-center">
+          <span class="small font-monospace" id="modalPagoCVU">-</span>
+          <button class="btn btn-sm btn-outline-secondary" onclick="copiarTexto('modalPagoCVU')">
+            <i class="bi bi-clipboard"></i> Copiar
+          </button>
+        </div>
+      </div>
+
+      <button class="btn btn-success w-100 fw-bold" onclick="cerrarModalPago()">Entendido</button>
+    </div>
+  </div>
+
+  <!-- Toast Notificador -->
+  <div class="toast-notice" id="toastNotice">
+    <i class="bi bi-check-circle-fill text-success"></i>
+    <span id="toastMsg">¡Producto agregado al carrito!</span>
+  </div>
+
+  <!-- ================= LÓGICA JAVASCRIPT ================= -->
+  <script>
+    let productos = [];
+    let carrito = [];
+    let isRunningAnim = false;
+    let telefonoTienda = "542944533903";
+
+    document.addEventListener("DOMContentLoaded", () => {
+      cargarProductos();
+    });
+
+    async function cargarProductos() {
+      try {
+        const res = await fetch("productos_peninsula.json");
+        productos = await res.json();
+      } catch (e) {
+        productos = [
+          { id: 128, nombre: "Adaptador Tipo C a 3.5 Ibek Ik-a003", descripcion: "Adaptador de audio Tipo C a 3.5mm para auriculares.", precio: "8800.00", imagen: "uploads/prod_1788099172_9718.webp" },
+          { id: 127, nombre: "Adaptador Iphone a 3.5 Ibek ik-a001", descripcion: "Adaptador de audio Lightning a 3.5mm compatible con iPhone y iPad.", precio: "8800.00", imagen: "uploads/prod_1788099124_4152.webp" },
+          { id: 126, nombre: "Balanza de cocina precisión 0.1 a 3000 gr BLZ-5206", descripcion: "Balanza digital de alta precisión para cocina, repostería y café.", precio: "18000.00", imagen: "uploads/prod_1788098943_9204.jpeg" },
+          { id: 125, nombre: "Parlante bt tambor gts-1675", descripcion: "Parlante Bluetooth portátil con luces LED, radio FM y entrada USB.", precio: "16500.00", imagen: "uploads/prod_1788098724_1955.jpeg" },
+          { id: 124, nombre: "Parlante bluetooth noga p78 ventosa", descripcion: "Parlante impermeable con ventosa para ducha, piscina y exteriores.", precio: "19000.00", imagen: "uploads/prod_1788098594_8099.jpeg" },
+          { id: 123, nombre: 'Parlante Bluetooth Only Drop 3" mods904', descripcion: "Parlante compacto con sonido estéreo potente y batería de larga duración.", precio: "18200.00", imagen: "uploads/prod_1788098548_9996.jpeg" }
+        ];
+      }
+
+      document.getElementById("totalProdsLabel").innerText = `${productos.length} artículos en stock`;
+      renderizarProductos();
+    }
+
+    // RENDERIZAR PRODUCTOS CON CARDS MODERNAS (FOTO ARRIBA, DETALLES Y BOTÓN AGREGAR)
+    function renderizarProductos() {
+      const cont = document.getElementById("listaProductos");
+      cont.innerHTML = "";
+
+      productos.forEach(p => {
+        const item = carrito.find(i => i.id === p.id);
+        const cantidad = item ? item.cantidad : 0;
+        const imgUrl = p.imagen ? (p.imagen.startsWith('http') ? p.imagen : `https://cerodistancia.click/${p.imagen}`) : "";
+
+        cont.innerHTML += `
+          <div class="product-card">
+            <span class="prod-badge">Disponible</span>
+            <div class="prod-img-wrapper">
+              ${imgUrl ? `<img src="${imgUrl}" alt="${p.nombre}" onerror="this.onerror=null; this.src='https://placehold.co/400x300/e2e8f0/64748b?text=Foto'">` : `<i class="bi bi-image text-muted fs-1"></i>`}
+            </div>
+            
+            <div class="prod-info">
+              <div class="prod-name">${p.nombre}</div>
+              <div class="prod-desc">${p.descripcion || "Sin descripción adicional."}</div>
+              
+              <div class="prod-footer">
+                <div class="prod-price">$${parseFloat(p.precio).toLocaleString('es-AR')}</div>
+
+                <div>
+                  ${cantidad === 0 
+                    ? `<button class="btn-add-cart" onclick="agregarAlCarrito(${p.id}, '${p.nombre.replace(/'/g, "\\'")}', ${p.precio})">
+                         <i class="bi bi-cart-plus"></i> Agregar
+                       </button>`
+                    : `<div class="cant-control-box">
+                         <button class="cant-btn" onclick="restar(${p.id})">−</button>
+                         <span class="fw-bold" style="font-size:13px; color:#0f172a;">${cantidad}</span>
+                         <button class="cant-btn" onclick="sumar(${p.id})">+</button>
+                       </div>`
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    // ==============================================================
+    // ANIMACIÓN REACTIVA: CHAGUITO VIAJA A LA DERECHA (SUPERIOR)
+    // ==============================================================
+    function ejecutarAnimacionHaciaDerecha(nombreProducto, callback) {
+      if (isRunningAnim) return;
+      isRunningAnim = true;
+
+      const animBar = document.getElementById("animBar");
+      const track = document.getElementById("animTrack");
+      const prodNameSpan = document.getElementById("animProductName");
+      const statusText = document.getElementById("statusLabelText");
+      const headerCartBtn = document.getElementById("headerCartBtn");
+
+      prodNameSpan.innerText = nombreProducto.length > 25 ? nombreProducto.substring(0, 25) + "..." : nombreProducto;
+      statusText.innerText = `Empacando "${prodNameSpan.innerText}"...`;
+
+      // 1. Abrir sub-barra angosta (120px)
+      animBar.classList.add("active");
+
+      // 2. Cae el producto dentro de la caja en el centro
+      setTimeout(() => {
+        track.className = "anim-bar-track animating-active";
+      }, 100);
+
+      // 3. Entra el changuito desde la izquierda hacia el centro
+      setTimeout(() => {
+        track.classList.add("animating-cart");
+      }, 550);
+
+      // 4. La caja cae dentro del changuito y salta el destello
+      setTimeout(() => {
+        track.classList.add("animating-sparkle");
+        statusText.innerText = "¡Listo en el changuito!";
+      }, 900);
+
+      // 5. El changuito llega a la DERECHA justo hacia el botón de Carrito
+      setTimeout(() => {
+        headerCartBtn.classList.add("bump");
+        setTimeout(() => headerCartBtn.classList.remove("bump"), 600);
+
+        actualizarBadgeCarrito();
+        showToast(`¡${prodNameSpan.innerText} agregado! 🎉`);
+
+        if (typeof callback === 'function') callback();
+      }, 2100);
+
+      // 6. Se pliega suavemente la barra
+      setTimeout(() => {
+        animBar.classList.remove("active");
+        setTimeout(() => {
+          track.className = "anim-bar-track";
+          isRunningAnim = false;
+        }, 350);
+      }, 2500);
+    }
+
+    function agregarAlCarrito(id, nombre, precio) {
+      const item = carrito.find(p => p.id === id);
+      if (item) {
+        item.cantidad++;
+      } else {
+        carrito.push({ id, nombre, precio: parseFloat(precio), cantidad: 1 });
+      }
+
+      ejecutarAnimacionHaciaDerecha(nombre, () => {
+        renderizarProductos();
+      });
+    }
+
+    function sumar(id) {
+      const item = carrito.find(p => p.id === id);
+      if (item) item.cantidad++;
+      actualizarBadgeCarrito();
+      renderizarProductos();
+    }
+
+    function restar(id) {
+      const index = carrito.findIndex(p => p.id === id);
+      if (index !== -1) {
+        carrito[index].cantidad--;
+        if (carrito[index].cantidad <= 0) carrito.splice(index, 1);
+      }
+      actualizarBadgeCarrito();
+      renderizarProductos();
+    }
+
+    function actualizarBadgeCarrito() {
+      const totalItems = carrito.reduce((a, p) => a + p.cantidad, 0);
+      document.getElementById("cartCountBadge").innerText = totalItems;
+      document.getElementById("btnCarritoFixedText").innerText = `Ver carrito (${totalItems})`;
+    }
+
+    // MODAL DEL CARRITO
+    function abrirModalCarrito() {
+      const modal = document.getElementById("modalCarritoBackdrop");
+      const cont = document.getElementById("carritoItemsModal");
+      const totalSpan = document.getElementById("totalCarritoSpan");
+
+      cont.innerHTML = "";
+      let total = 0;
+
+      if (carrito.length === 0) {
+        cont.innerHTML = "<div class='text-center py-4 text-muted'><i class='bi bi-cart-x fs-1 d-block mb-2'></i>El carrito está vacío</div>";
+        totalSpan.innerText = "0";
+      } else {
+        carrito.forEach((p, idx) => {
+          const sub = p.precio * p.cantidad;
+          total += sub;
+          cont.innerHTML += `
+            <div class="d-flex justify-content-between align-items-center border-bottom py-2">
+              <div>
+                <div class="fw-bold" style="font-size:14px;">${p.nombre}</div>
+                <small class="text-muted">$${p.precio.toLocaleString('es-AR')} x ${p.cantidad}</small>
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                <span class="fw-bold text-success me-1">$${sub.toLocaleString('es-AR')}</span>
+                <button class="btn btn-sm btn-outline-secondary py-0 px-2" onclick="sumarModal(${p.id})">+</button>
+                <button class="btn btn-sm btn-outline-secondary py-0 px-2" onclick="restarModal(${p.id})">-</button>
+              </div>
+            </div>
+          `;
+        });
+        totalSpan.innerText = total.toLocaleString('es-AR');
+      }
+
+      modal.style.display = "flex";
+    }
+
+    function cerrarModalCarrito() {
+      document.getElementById("modalCarritoBackdrop").style.display = "none";
+    }
+
+    function sumarModal(id) {
+      sumar(id);
+      abrirModalCarrito();
+    }
+
+    function restarModal(id) {
+      restar(id);
+      abrirModalCarrito();
+    }
+
+    // OPCIONES DE ENTREGA
+    function togglePill(el) {
+      el.classList.toggle("selected");
+    }
+
+    // ADMINISTRADOR DEL COMERCIANTE (CRUD Y TOGGLE EN VIVO)
+    function togglePanelAdmin() {
+      const panel = document.getElementById("merchantAdminPanel");
+      panel.style.display = panel.style.display === "none" ? "block" : "none";
+    }
+
+    function previewLogoSubido(input) {
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          document.getElementById("bannerImg").style.backgroundImage = `url('${e.target.result}')`;
+          const thumb = document.getElementById("adminLogoThumb");
+          if (thumb) thumb.style.backgroundImage = `url('${e.target.result}')`;
+          showToast("¡Banner actualizado en vista previa!");
+        }
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    function restablecerLogoDefecto() {
+      const orig = "https://cerodistancia.click/uploads/logo_1776893322_4407.png";
+      document.getElementById("bannerImg").style.backgroundImage = `url('${orig}')`;
+      const thumb = document.getElementById("adminLogoThumb");
+      if (thumb) thumb.style.backgroundImage = `url('${orig}')`;
+      document.getElementById("cfgLogoFile").value = "";
+      showToast("Banner restablecido al original");
+    }
+
+    function guardarNuevoProductoCRUD() {
+      const nombre = document.getElementById("crudProdNombre").value.trim();
+      const precio = parseFloat(document.getElementById("crudProdPrecio").value);
+      const desc = document.getElementById("crudProdDesc").value.trim();
+      const fileInput = document.getElementById("crudProdFoto");
+
+      if (!nombre || isNaN(precio) || precio <= 0) {
+        return alert("Por favor ingresá un nombre y un precio válido para el producto.");
+      }
+
+      const nuevoId = Date.now();
+
+      if (fileInput.files && fileInput.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          productos.unshift({
+            id: nuevoId,
+            nombre: nombre,
+            descripcion: desc,
+            precio: precio.toFixed(2),
+            imagen: e.target.result
+          });
+          finalizarAgregarProd();
+        }
+        reader.readAsDataURL(fileInput.files[0]);
+      } else {
+        productos.unshift({
+          id: nuevoId,
+          nombre: nombre,
+          descripcion: desc,
+          precio: precio.toFixed(2),
+          imagen: ""
+        });
+        finalizarAgregarProd();
+      }
+    }
+
+    function finalizarAgregarProd() {
+      document.getElementById("crudProdNombre").value = "";
+      document.getElementById("crudProdPrecio").value = "";
+      document.getElementById("crudProdDesc").value = "";
+      document.getElementById("crudProdFoto").value = "";
+      document.getElementById("totalProdsLabel").innerText = `${productos.length} artículos en stock`;
+      renderizarProductos();
+      showToast("¡Nuevo producto agregado al catálogo!");
+    }
+
+    function actualizarDatosEnVivo() {
+      const nombre = document.getElementById("cfgNombre").value.trim();
+      const desc = document.getElementById("cfgDescripcion").value.trim();
+      const quienes = document.getElementById("cfgQuienes").value.trim();
+      telefonoTienda = document.getElementById("cfgTelefono").value.trim();
+
+      document.getElementById("displayNombreTienda").innerText = nombre || "Península Store";
+      document.getElementById("navbarStoreTitle").innerText = nombre || "Península Store";
+      document.getElementById("displayDescripcion").innerText = desc;
+      document.getElementById("displayQuienes").innerText = quienes;
+
+      const mostrarEnvios = document.getElementById("cfgMostrarEnvios").checked;
+      document.getElementById("shippingBar").style.display = mostrarEnvios ? "block" : "none";
+      document.getElementById("lblOpcion1").innerText = document.getElementById("cfgOpcion1").value;
+      document.getElementById("lblOpcion2").innerText = document.getElementById("cfgOpcion2").value;
+      document.getElementById("lblOpcion3").innerText = document.getElementById("cfgOpcion3").value;
+
+      const mostrarPagos = document.getElementById("cfgMostrarPagos").checked;
+      document.getElementById("paymentsStrip").style.display = mostrarPagos ? "block" : "none";
+    }
+
+    // MODAL DE MEDIOS DE PAGO
+    function abrirModalPago(titulo, alias, cvu, titular, link) {
+      document.getElementById("modalPagoTitulo").innerText = titulo;
+      document.getElementById("modalPagoTitular").innerText = titular;
+      document.getElementById("modalPagoAlias").innerText = alias;
+      document.getElementById("modalPagoCVU").innerText = cvu;
+      document.getElementById("modalPagoBackdrop").style.display = "flex";
+    }
+
+    function cerrarModalPago() {
+      document.getElementById("modalPagoBackdrop").style.display = "none";
+    }
+
+    function copiarTexto(elementId) {
+      const text = document.getElementById(elementId).innerText;
+      navigator.clipboard.writeText(text);
+      showToast(`¡Copiado: ${text}!`);
+    }
+
+    // ENVIAR POR WHATSAPP
+    function enviarPedidoFinalWhatsApp() {
+      const nombre = document.getElementById("cliNombre").value.trim();
+      const apellido = document.getElementById("cliApellido").value.trim();
+      const tel = document.getElementById("cliTelefono").value.trim();
+
+      if (!nombre || !apellido || !tel) {
+        return alert("Por favor completá tu nombre, apellido y WhatsApp.");
+      }
+
+      if (carrito.length === 0) return alert("Tu carrito está vacío.");
+
+      let msg = `👋 *Nuevo pedido en ${document.getElementById("displayNombreTienda").innerText}*%0A%0A`;
+      let total = 0;
+      carrito.forEach(p => {
+        msg += `▪ ${p.cantidad}x ${p.nombre} - $${(p.precio * p.cantidad).toLocaleString('es-AR')}%0A`;
+        total += p.precio * p.cantidad;
+      });
+
+      msg += `%0A💰 *Total: $${total.toLocaleString('es-AR')}*%0A`;
+      msg += `👤 *Cliente:* ${nombre} ${apellido}%0A📞 *Teléfono:* ${tel}%0A`;
+
+      const seleccionados = document.querySelectorAll(".shipping-pill-btn.selected");
+      if (seleccionados.length > 0) {
+        msg += `%0A🚚 *Opciones de entrega elegidas:*%0A`;
+        seleccionados.forEach(s => {
+          msg += `☑ ${s.innerText.trim()}%0A`;
+        });
+      }
+
+      window.open(`https://wa.me/${telefonoTienda}?text=${msg}`, "_blank");
+      cerrarModalCarrito();
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById("toastNotice");
+      const text = document.getElementById("toastMsg");
+      text.innerText = msg;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 2800);
+    }
+  </script>
+</body>
+</html>

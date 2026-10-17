@@ -1,0 +1,2 @@
+<?php
+define('MP_ACCESS_TOKEN', 'TU_MERCADOPAGO_ACCESS_TOKEN');

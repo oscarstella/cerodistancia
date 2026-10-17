@@ -1,0 +1,978 @@
+[
+  {
+    "id": 128,
+    "nombre": "Adaptador Tipo C a 3.5 Ibek Ik-a003",
+    "descripcion": "Adaptador Tipo C a 3.5 Ibek Ik-a003",
+    "precio": "8800.00",
+    "imagen": "uploads/prod_1788099172_9718.webp",
+    "activo": 1
+  },
+  {
+    "id": 127,
+    "nombre": "Adaptador Iphone a 3.5 Ibek ik-a001",
+    "descripcion": "Adaptador Iphone a 3.5 Ibek ik-a001",
+    "precio": "8800.00",
+    "imagen": "uploads/prod_1788099124_4152.webp",
+    "activo": 1
+  },
+  {
+    "id": 126,
+    "nombre": "Balanza de cocina precisión 0.1 a 3000 gr BLZ-5206",
+    "descripcion": "Balanza de cocina 0.1 a 3000 gr BLZ-5206",
+    "precio": "18000.00",
+    "imagen": "uploads/prod_1788098943_9204.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 125,
+    "nombre": "Parlante bt tambor gts-1675",
+    "descripcion": "Parlante bt tambor gts-1675",
+    "precio": "16500.00",
+    "imagen": "uploads/prod_1788098724_1955.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 124,
+    "nombre": "Parlante bluetooth noga p78 ventosa",
+    "descripcion": "Parlante bluetooth noga p78 ventosa",
+    "precio": "19000.00",
+    "imagen": "uploads/prod_1788098594_8099.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 123,
+    "nombre": "Parlante Bluetooth Only Drop 3\" mods904",
+    "descripcion": "Parlante Bluetooth Only Drop 3\" mods904",
+    "precio": "18200.00",
+    "imagen": "uploads/prod_1788098548_9996.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 122,
+    "nombre": "Pendrive Sandisk 32GB Usb 3.2 100mb/s",
+    "descripcion": "Pendrive Sandisk 32GB Usb 3.2 100mb/s",
+    "precio": "32000.00",
+    "imagen": "uploads/prod_1788098419_5902.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 121,
+    "nombre": "Memoria micro SD Hoco 64gb",
+    "descripcion": "Memoria micro SD Hoco 64gb clase 10 ideal cámaras",
+    "precio": "22000.00",
+    "imagen": "uploads/prod_1788098367_1068.webp",
+    "activo": 1
+  },
+  {
+    "id": 120,
+    "nombre": "Zapatilla Flor 5 Bocas + 2 Usb sv-769",
+    "descripcion": "Zapatilla Flor 5 Bocas + 2 Usb sv-769",
+    "precio": "18500.00",
+    "imagen": "uploads/prod_1788098256_1664.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 119,
+    "nombre": "Tira Led Time 2835 5m",
+    "descripcion": "Tira Led Time 2835 5m",
+    "precio": "18000.00",
+    "imagen": "uploads/prod_1788098186_6981.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 118,
+    "nombre": "Tira Led Neon RGB c/control 5 metros",
+    "descripcion": "Tira Led Neon RGB c/control 5 metros",
+    "precio": "22000.00",
+    "imagen": "uploads/prod_1788098130_2266.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 117,
+    "nombre": "Protector de Tension Ajustable 40a. Melech-80",
+    "descripcion": "Protector de Tension Ajustable 40a. Melech-80",
+    "precio": "33000.00",
+    "imagen": "uploads/prod_1788098041_8959.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 116,
+    "nombre": "Luz de emergencia 60 led c/enchufe r-92L",
+    "descripcion": "Luz de emergencia 60 led c/enchufe r-92L",
+    "precio": "23000.00",
+    "imagen": "uploads/prod_1788097969_8601.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 115,
+    "nombre": "Medidor de Consumo P/Riel melech-117",
+    "descripcion": "Medidor de Consumo ideal para medir el consumo de tu hogar o si tenes casas compartidas.",
+    "precio": "32000.00",
+    "imagen": "uploads/prod_1788097894_9116.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 114,
+    "nombre": "Manguera Luz fina 5m calida Star Vision",
+    "descripcion": "Manguera Luz fina 5m calida Star Vision",
+    "precio": "22600.00",
+    "imagen": "uploads/prod_1788097783_7844.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 113,
+    "nombre": "Liston Led Tactil Recargable Melech-78",
+    "descripcion": "Liston Led Tactil Recargable Melech-78",
+    "precio": "17500.00",
+    "imagen": "uploads/prod_1788097715_6755.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 112,
+    "nombre": "Linterna minera recargable HL-505",
+    "descripcion": "Linterna minera recargable HL-505",
+    "precio": "13500.00",
+    "imagen": "uploads/prod_1788097659_3670.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 111,
+    "nombre": "Linterna Minera led rec. con sensor 3626",
+    "descripcion": "Linterna Minera led rec. con sensor 3626",
+    "precio": "16000.00",
+    "imagen": "uploads/prod_1788097608_7887.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 110,
+    "nombre": "Linterna Led c/zoom Recargable USB mj-616k",
+    "descripcion": "Linterna Led c/zoom Recargable USB mj-616k",
+    "precio": "15000.00",
+    "imagen": "uploads/prod_1788097563_7819.png",
+    "activo": 1
+  },
+  {
+    "id": 109,
+    "nombre": "Linterna Led 2 posiciones Carga usb y solar om5119",
+    "descripcion": "Linterna Led 2 posiciones Carga usb y solar om5119",
+    "precio": "19000.00",
+    "imagen": "uploads/prod_1788097505_1567.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 108,
+    "nombre": "Lampara Farol Led usb camping km-k20",
+    "descripcion": "Lampara Farol Led usb camping km-k20",
+    "precio": "22000.00",
+    "imagen": "uploads/prod_1788097387_8882.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 107,
+    "nombre": "Lampara Camping Solar Recargable 2029ka",
+    "descripcion": "Lampara Camping Solar Recargable 2029ka",
+    "precio": "19000.00",
+    "imagen": "uploads/prod_1788097323_8913.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 106,
+    "nombre": "Fuente Power 12V 1 A (tira led 2835)3007",
+    "descripcion": "Fuente Power 12V 1 A (tira led 2835)3007",
+    "precio": "11500.00",
+    "imagen": "uploads/prod_1788097267_4565.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 105,
+    "nombre": "Aro led 30 cm luz calida/fria con tripode 2.1m",
+    "descripcion": "Aro led 30 cm luz calida/fria con tripode 2.1m",
+    "precio": "32000.00",
+    "imagen": "uploads/prod_1788097185_4392.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 104,
+    "nombre": "Aro led 26 cm, luz fria y calida con tripode 2.1m",
+    "descripcion": "Aro led 26 cm, luz fria y calida con tripode 2.1m",
+    "precio": "28500.00",
+    "imagen": "uploads/prod_1788097147_9410.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 103,
+    "nombre": "Cable Usb V3 c/ filtro",
+    "descripcion": "Cable Usb V3 c/ filtro carga de cámara de fotos, joystick play 3 y muchos dispositivos",
+    "precio": "9700.00",
+    "imagen": "uploads/prod_1788097002_3176.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 102,
+    "nombre": "Cable USB time cab-44005 tipo C a C",
+    "descripcion": "Cable USB time cab-44005 tipo C a C",
+    "precio": "10000.00",
+    "imagen": "uploads/prod_1788096877_8012.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 101,
+    "nombre": "Cable Usb Only 54 ELE tipo C",
+    "descripcion": "Cable Usb Only 54 ELE tipo C",
+    "precio": "8000.00",
+    "imagen": "uploads/prod_1788096776_1231.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 100,
+    "nombre": "Cable Usb Kosmo c a iphone 1m",
+    "descripcion": "Cable Usb Kosmo c a iphone 1m",
+    "precio": "13000.00",
+    "imagen": "uploads/prod_1788096697_7649.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 99,
+    "nombre": "Cable Usb Kosmo C a C 60 Wats rapido",
+    "descripcion": "Cable Usb Kosmo C a C 60 Wats rapido",
+    "precio": "12500.00",
+    "imagen": "uploads/prod_1788096635_4331.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 98,
+    "nombre": "Cable Usb Iphone C a C 1m",
+    "descripcion": "Cable Usb Iphone C a C 1m",
+    "precio": "12500.00",
+    "imagen": "uploads/prod_1788096558_2595.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 97,
+    "nombre": "Cable Usb Ibek x03 6.1a. v8 120wats Goma",
+    "descripcion": "Cable Usb Ibek x03 6.1a. v8 120wats Goma",
+    "precio": "9600.00",
+    "imagen": "uploads/prod_1788096475_2354.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 96,
+    "nombre": "Power Bank Ibek pd160 20000 mah",
+    "descripcion": "Power Bank Ibek pd160 20000 mah",
+    "precio": "27000.00",
+    "imagen": "uploads/prod_1788096332_9260.webp",
+    "activo": 1
+  },
+  {
+    "id": 95,
+    "nombre": "Power Bank Ibek pd150 10000mah",
+    "descripcion": "Power Bank Ibek pd150 10000mah",
+    "precio": "23000.00",
+    "imagen": "uploads/prod_1788096266_5227.webp",
+    "activo": 1
+  },
+  {
+    "id": 94,
+    "nombre": "Fuente de alimentacion 9V 2 A",
+    "descripcion": "Fuente de alimentacion 9V 2 A",
+    "precio": "13500.00",
+    "imagen": "uploads/prod_1788096189_2900.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 93,
+    "nombre": "Cargador Wireless xaea Xpiral mod 723",
+    "descripcion": "Cargador Wireless xaea Xpiral mod 723\r\nCargador inalámbrico iPhone y Android compatible carga rápida",
+    "precio": "17000.00",
+    "imagen": "uploads/prod_1788096109_5235.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 92,
+    "nombre": "Cargador Time tmcc218 2,1 amper micro",
+    "descripcion": "Cargador Time tmcc218 2,1 amper micro",
+    "precio": "11500.00",
+    "imagen": "uploads/prod_1788095997_9146.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 91,
+    "nombre": "Cargador Time 2,1 amper tmcc213",
+    "descripcion": "Cargador Time 2,1 amper tmcc213",
+    "precio": "11800.00",
+    "imagen": "uploads/prod_1788095936_1545.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 90,
+    "nombre": "Cargador p/auto Ibek 25421 38w 2USB+C",
+    "descripcion": "Cargador p/auto Ibek 25421 38w 2USB+C",
+    "precio": "12000.00",
+    "imagen": "uploads/prod_1788095841_6048.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 89,
+    "nombre": "Cargador p/auto Ibek 25421 38w 2USB+C",
+    "descripcion": "Cargador p/auto Ibek 25421 38w 2USB+C",
+    "precio": "13500.00",
+    "imagen": "uploads/prod_1788095778_1461.webp",
+    "activo": 1
+  },
+  {
+    "id": 88,
+    "nombre": "Cargador Original Samsung 25w T/C inc cable",
+    "descripcion": "Cargador Original Samsung 25w T/C inc cable",
+    "precio": "26000.00",
+    "imagen": "uploads/prod_1788095714_3817.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 87,
+    "nombre": "Cargador Kosmo 3,3 Amper micro usb",
+    "descripcion": "Cargador Kosmo 3,3 Amper micro usb Con cable V8 (micro usb)",
+    "precio": "14500.00",
+    "imagen": "uploads/prod_1788095627_5098.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 86,
+    "nombre": "Cargador kosmo 2.75 amp tipo C",
+    "descripcion": "Cargador kosmo 2.75 amp tipo C con cable tipo C carga rapida",
+    "precio": "13500.00",
+    "imagen": "uploads/prod_1788095530_4602.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 85,
+    "nombre": "Cabezal cargador de auto only gear usb + tipo C",
+    "descripcion": "Cargador para auto usb + tipo C marca only gear",
+    "precio": "12800.00",
+    "imagen": "uploads/prod_1788095357_IMG_8204.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 84,
+    "nombre": "Cargador auto kosmo 4.2 amper con  cable + 2 usb",
+    "descripcion": "Cabezal 4.2 amper  para  auto kosmo con cable 2 entradas usb",
+    "precio": "16000.00",
+    "imagen": "uploads/prod_1788095212_6502.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 83,
+    "nombre": "Cabezal auto ibek ac 01 tipo c/usb + cable",
+    "descripcion": "Cabezal auto marca Ibek ac 01 tipo C / usb + cable",
+    "precio": "13000.00",
+    "imagen": "uploads/prod_1788095017_4235.webp",
+    "activo": 1
+  },
+  {
+    "id": 82,
+    "nombre": "Cabezal carga súper rápida auto 60 watts groovy velocity",
+    "descripcion": "Cabezal cargador 60 watts premium para auto groovy velocity",
+    "precio": "28000.00",
+    "imagen": "uploads/prod_1788094861_3758.webp",
+    "activo": 1
+  },
+  {
+    "id": 81,
+    "nombre": "Cabezal xaea  hyper 55 watts 5.4 amper",
+    "descripcion": "Cabezal marca xaea hyper 55 watts 5.4 amper usb+tipo C",
+    "precio": "23500.00",
+    "imagen": "uploads/prod_1788094625_IMG_8200.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 80,
+    "nombre": "Cabezal xaea tipo C 45 watts 5 amper",
+    "descripcion": "Cabezal carga súper rápido 45 watts 5 amper marca xaea.",
+    "precio": "19500.00",
+    "imagen": "uploads/prod_1788094405_6920.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 79,
+    "nombre": "Cabezal kosmo 65 w ultra rápido",
+    "descripcion": "Cabezal kosmo ultra rápido ya y tipo C 65 watts",
+    "precio": "24500.00",
+    "imagen": "uploads/prod_1788094156_5663.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 78,
+    "nombre": "Cabezal Ibek tipo C y usb",
+    "descripcion": "Cabezal Ibek tipo C y usb 5.8 amper",
+    "precio": "14800.00",
+    "imagen": "uploads/prod_1788094009_2149.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 77,
+    "nombre": "Cabezal cargador Ibek 2 amper",
+    "descripcion": "Cabezal sin cable marca Ibek 2 amper (carga común)",
+    "precio": "11700.00",
+    "imagen": "uploads/prod_1788093887_8377.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 76,
+    "nombre": "Kit de puntas destornillador T",
+    "descripcion": "Juego de puntas de atornillar con llave T",
+    "precio": "15000.00",
+    "imagen": "uploads/prod_1788093624_8090.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 75,
+    "nombre": "Set 7 destornilladores imantados",
+    "descripcion": "Juego de destornillador de 7 piezas imantados punta plana y Philips ideal para cualquier tipo de trabajo.",
+    "precio": "18000.00",
+    "imagen": "uploads/prod_1788093510_5895.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 74,
+    "nombre": "Tira neón led",
+    "descripcion": "Tira led neón led rgb con control remoto y Bluetooth, podes combinar movimientoes y efectos, se conecta a la música y crea efectos dinamos increíbles! Viene con puerto usb.",
+    "precio": "35000.00",
+    "imagen": "uploads/prod_1785534430_8291.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 73,
+    "nombre": "Jarrita de vidrio batidora recargable usb",
+    "descripcion": "Jarrita de vidrio con batidor recargable usb con cable incluido, ideal para malteados, espumar leche o café, 7000 rpm, excelente calidad!",
+    "precio": "32000.00",
+    "imagen": "uploads/prod_1783790328_IMG_7688.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 72,
+    "nombre": "Tira led rgb 5050 marca time 5 mts",
+    "descripcion": "Tira led rgb time 5050 con control remoto, interior/exterior.",
+    "precio": "26000.00",
+    "imagen": "uploads/prod_1783561363_2215.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 71,
+    "nombre": "Trípode celular cámara",
+    "descripcion": "Tripode celular cámara 360 grados, excelente calidad!",
+    "precio": "32000.00",
+    "imagen": "uploads/prod_1783560981_3479.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 70,
+    "nombre": "Lámpara velador táctil recargable usb",
+    "descripcion": "Lámpara velador recargable usb, táctil con 3 tipo de luz (fría, neutra, cálida), es dimerizable, se puede bajar y subir la intensidad de luz, ideal para lugares de poco consumo eléctrico!!",
+    "precio": "28000.00",
+    "imagen": "uploads/prod_1783021136_2781.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 69,
+    "nombre": "Cable pc/ amplificador interlock",
+    "descripcion": "Cable fuente pc o amplificador de audio, consolas de sonido.",
+    "precio": "16000.00",
+    "imagen": "uploads/prod_1782826082_8467.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 68,
+    "nombre": "Auriculares inalámbricos Bluetooth Netmak Miko",
+    "descripcion": "Auriculares inalámbricos Bluetooth Netmak Miko, colores blanco o negro. Diseño ergonómico y más de 3 hs de duración de batería. Audio de calidad superior al mejor precio!",
+    "precio": "25000.00",
+    "imagen": "uploads/prod_1782825491_5255.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 67,
+    "nombre": "Tira led rgb con control remoto, para tv 3 mts",
+    "descripcion": "Tira led para colocar en smart tv o tv led usb, con adhesivo dale un toque de color a tu tele! Viene con control remoto rgb y efectos.",
+    "precio": "22000.00",
+    "imagen": "uploads/prod_1782825131_8956.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 66,
+    "nombre": "Apple AirPods Pro 2da generación",
+    "descripcion": "AirPods Pro segunda generación con cancelación de ruido, sonido espacial más de 3 hs de duración de batería, diseño ergonómico, audio de calidad inigualable a un precio inmejorable!!",
+    "precio": "45000.00",
+    "imagen": "uploads/prod_1782825995_IMG_7604.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 65,
+    "nombre": "Joystick ps4 sony",
+    "descripcion": "Joystick PlayStation 4 marca Sony (consultar color disponible)",
+    "precio": "38000.00",
+    "imagen": "uploads/prod_1782520789_2674.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 64,
+    "nombre": "Láser proyector verde",
+    "descripcion": "Proyector láser verde con efectos. Ideal fiestas y eventos",
+    "precio": "30000.00",
+    "imagen": "uploads/prod_1782432265_1048.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 63,
+    "nombre": "Auriculares Samsung Galaxy buds 7 pro",
+    "descripcion": "Auriculares Bluetooth Samsung Galaxy buds 7 pro, con cable incluido. Diseño ergonómico, audio potente y 3 hs de batería",
+    "precio": "45000.00",
+    "imagen": "uploads/prod_1782354973_1105.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 62,
+    "nombre": "Joystick ps3 sin marca",
+    "descripcion": "Joystick ps3 sin marca excelente calidad al mejor precio!",
+    "precio": "25000.00",
+    "imagen": "uploads/prod_1782354590_4346.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 61,
+    "nombre": "Cámara inteligente interior",
+    "descripcion": "Cámara inteligente de interior, luz led, infrarrojo, sensor de movimiento.",
+    "precio": "43500.00",
+    "imagen": "uploads/prod_1782354156_5462.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 60,
+    "nombre": "Cabezal  iPhone 25 w",
+    "descripcion": "Cabezal de carga rápida iPhone 15 pro",
+    "precio": "30000.00",
+    "imagen": "uploads/prod_1782353708_IMG_3675.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 59,
+    "nombre": "Trípode Holder con luz led y control",
+    "descripcion": "Trípode y soporte de celular con micrófono, luz led y control remoto.",
+    "precio": "24000.00",
+    "imagen": "uploads/prod_1782353421_8811.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 58,
+    "nombre": "Luz nebulosa rgb recargable",
+    "descripcion": "Luz nebulosa rgb recargable, a control remoto con cable incluido.",
+    "precio": "12000.00",
+    "imagen": "uploads/prod_1782353264_3782.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 57,
+    "nombre": "Brazalete celular",
+    "descripcion": "Brazalete para celular deportivo impermeable táctil",
+    "precio": "12000.00",
+    "imagen": "uploads/prod_1782353030_6252.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 56,
+    "nombre": "Balanza digital cocina",
+    "descripcion": "Balanza digital hasta 10 kg a pilas doble A",
+    "precio": "13000.00",
+    "imagen": "uploads/prod_1782352878_7178.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 55,
+    "nombre": "Botella mamushka 3 en 1",
+    "descripcion": "Botella mamushka 3 en 1 al precio de 1",
+    "precio": "20000.00",
+    "imagen": "uploads/prod_1782352719_4332.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 54,
+    "nombre": "Bandera argentina 0,90 x 1,50",
+    "descripcion": "Bandera argentina 0,90 cms x 1,50 cms, 2 ojales",
+    "precio": "8000.00",
+    "imagen": "uploads/prod_1782352292_7822.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 53,
+    "nombre": "Cargador rápido xaea 30w C/ cable tipo C",
+    "descripcion": "Cargador súper rápido xaea 30w, con cable tipo C, excelente calidad y potencia!",
+    "precio": "18000.00",
+    "imagen": "uploads/prod_1782348619_8267.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 52,
+    "nombre": "Auricular Bluetooth pantalla táctil",
+    "descripcion": "Auriculares Bluetooth recargables, batería larga duración. Diseño ergonómico, audio potente, pantalla táctil, con juegos, idiomas y más.. viene con cable de carga incluido.",
+    "precio": "26000.00",
+    "imagen": "uploads/prod_1782348468_8277.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 51,
+    "nombre": "Aro led 30 cm de diámetro",
+    "descripcion": "Aro led 30 cms diámetro, luz cálida, fría y neutra, con trípode metal reforzado de 2,10 mts altura máxima, disponemos en 36 y 26 cms de diámetro.",
+    "precio": "32000.00",
+    "imagen": "uploads/prod_1782345324_4007.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 50,
+    "nombre": "Lámpara de luna",
+    "descripcion": "Lámpara luna rgb con control remoto, recargable usb, con cable incluido.",
+    "precio": "32000.00",
+    "imagen": "uploads/prod_1782345094_2098.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 49,
+    "nombre": "Encendedor plasma recargable.",
+    "descripcion": "Encendedor tipo magic click de plasma, recargable usb con cable incluido de carga,",
+    "precio": "18000.00",
+    "imagen": "uploads/prod_1782344996_9698.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 48,
+    "nombre": "Adaptador de viaje",
+    "descripcion": "Adaptador para viajero, con todos los tipos de ficha para conexión en otro país.",
+    "precio": "14000.00",
+    "imagen": "uploads/prod_1782344822_8171.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 47,
+    "nombre": "Lámpara articulada",
+    "descripcion": "Lámpara articulada con pie y soporte de mesa, para lámparas a rosca e27",
+    "precio": "30000.00",
+    "imagen": "uploads/prod_1782344628_8491.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 46,
+    "nombre": "Cargador Samsung con cable tipo C original",
+    "descripcion": "Cargador Samsung súper rápido tipo c, con cable incluido.",
+    "precio": "35000.00",
+    "imagen": "uploads/prod_1782344435_7693.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 45,
+    "nombre": "Inflador recargable auto",
+    "descripcion": "Inflador auto, moto, bicicleta, balón, recargable usb súper práctico con diferentes unidades de presión!",
+    "precio": "65000.00",
+    "imagen": "uploads/prod_1782344261_4093.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 44,
+    "nombre": "Set destornillador de precisión",
+    "descripcion": "Set destornilladores precisión para reparación celulares, computación, electrónica.",
+    "precio": "25000.00",
+    "imagen": "uploads/prod_1788093697_IMG_8194.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 43,
+    "nombre": "Cámara inteligente porta lámpara",
+    "descripcion": "Cámara inteligente porta lámpara con  detector de movimiento y animales, infrarrojos y luz led",
+    "precio": "40000.00",
+    "imagen": "uploads/prod_1782170772_8291.webp",
+    "activo": 1
+  },
+  {
+    "id": 42,
+    "nombre": "Marcadores doble punta",
+    "descripcion": "Marcadores doble punta 80, 62, 43 piezas",
+    "precio": "24000.00",
+    "imagen": "uploads/prod_1782170654_4873.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 41,
+    "nombre": "Linterna recargable usb",
+    "descripcion": "Linterna led recargable usb gran potencia y duración bateria",
+    "precio": "15000.00",
+    "imagen": "uploads/prod_1782170538_5937.png",
+    "activo": 1
+  },
+  {
+    "id": 40,
+    "nombre": "Protector celular agua sumergible",
+    "descripcion": "Protector para celular sumergible agua lluvia",
+    "precio": "12000.00",
+    "imagen": "uploads/prod_1782170436_8142.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 39,
+    "nombre": "Punteo laser recargable",
+    "descripcion": "Puntero láser verde 303  usb recargable conferencia boliche",
+    "precio": "30000.00",
+    "imagen": "uploads/prod_1782170267_9764.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 38,
+    "nombre": "Cargador universal notebook",
+    "descripcion": "Cargador portátil notebook para todo tipo de marcas.",
+    "precio": "22000.00",
+    "imagen": "uploads/prod_1782169887_2280.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 36,
+    "nombre": "Set termo tazas térmicas.",
+    "descripcion": "Termo 750 ml con 3 tazas",
+    "precio": "25000.00",
+    "imagen": "uploads/prod_1782169649_2633.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 35,
+    "nombre": "Dispenser electrónico recargable",
+    "descripcion": "Dispenser de agua bidón recargable",
+    "precio": "20000.00",
+    "imagen": "uploads/prod_1782169497_2765.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 34,
+    "nombre": "Protón led rgb con control remoto",
+    "descripcion": "Protón led con control rgb",
+    "precio": "40000.00",
+    "imagen": "uploads/prod_1782169435_1823.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 33,
+    "nombre": "Multi hub Netmak",
+    "descripcion": "Multi hub conexión múltiple de puertos en simultáneo.",
+    "precio": "23000.00",
+    "imagen": "uploads/prod_1782169289_9901.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 31,
+    "nombre": "Matelisto stanley 750 ml",
+    "descripcion": "Matelisto autocebante stanley 750 ml con pico plástico.",
+    "precio": "30000.00",
+    "imagen": "uploads/prod_1782168929_3125.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 30,
+    "nombre": "Botellas acero inox stanley",
+    "descripcion": "Botellas acero inoxidable 304 stanley color.",
+    "precio": "22000.00",
+    "imagen": "uploads/prod_1782168846_2287.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 29,
+    "nombre": "Cortadora pelo digital",
+    "descripcion": "Cortadora pelo digital con diferentes medidas y panel de carga digital.",
+    "precio": "25000.00",
+    "imagen": "uploads/prod_1782168707_6431.webp",
+    "activo": 1
+  },
+  {
+    "id": 28,
+    "nombre": "Cámara inteligente exterior wifi",
+    "descripcion": "Cámara exterior wifi inteligente con detección de movimiento, luz led y parpadeo, infrarrojo.",
+    "precio": "48500.00",
+    "imagen": "uploads/prod_1782168583_2397.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 27,
+    "nombre": "Auricular Bluetooth M30",
+    "descripcion": "Auriculares inalámbricos M30 gran sonido, ergonómico y batería larga duración.",
+    "precio": "25000.00",
+    "imagen": "uploads/prod_1782168424_1569.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 26,
+    "nombre": "Cortadora pelo mascotas",
+    "descripcion": "Kit de peluquería canina.",
+    "precio": "30000.00",
+    "imagen": "uploads/prod_1782168331_2892.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 25,
+    "nombre": "Termo acero inoxidable",
+    "descripcion": "Termo simil stanley 1.4 l con pico cebador. Varios colores.",
+    "precio": "25000.00",
+    "imagen": "uploads/prod_1778017186_1238.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 24,
+    "nombre": "TV stick Android tv",
+    "descripcion": "TV stick Android tv con aplicaciones incluidas.",
+    "precio": "80000.00",
+    "imagen": "uploads/prod_1778016950_3259.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 23,
+    "nombre": "Sillón con apoya brazo",
+    "descripcion": "Sillón tipo sofá con apoya brazo, con inflador incluido, súper cómodo y resistente. Varios colores disponibles",
+    "precio": "48000.00",
+    "imagen": "uploads/prod_1778016791_6503.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 22,
+    "nombre": "Guantes de nitrilo y látex",
+    "descripcion": "Guantes de nitrilo y látex x caja 100 unidades; súper resistente, todos los talles!",
+    "precio": "9500.00",
+    "imagen": "uploads/prod_1778016664_3646.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 21,
+    "nombre": "Sillón puff individual con apoya pie",
+    "descripcion": "Sillón puff individual con apoya pie, súper resistente, cómodo y a prueba de agua, varios colores disponibles.",
+    "precio": "40000.00",
+    "imagen": "uploads/prod_1778016489_6161.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 20,
+    "nombre": "Auriculares Samsung Galaxy buds 2",
+    "descripcion": "Auriculares inalámbricos Samsung Galaxy Buds 2 ; 5 hs de duración de batería, calidad de audio profesional.",
+    "precio": "45000.00",
+    "imagen": "uploads/prod_1778016357_1453.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 19,
+    "nombre": "Sillón puff inflable modelo almeja",
+    "descripcion": "Sillón inflable con inflador incluido, súper resistente, estilo almeja; a prueba de agua, varios colores disponibles.",
+    "precio": "38000.00",
+    "imagen": "uploads/prod_1778016242_2708.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 18,
+    "nombre": "Diván sillón inflable",
+    "descripcion": "Sillón diván inflable con inflador incluido; súper cómodo y resistente al agua. Podes llevar a la playa, al parque, donde quieras!! Varios colores disponibles",
+    "precio": "45000.00",
+    "imagen": "uploads/prod_1778016085_1113.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 17,
+    "nombre": "TV stick Dinax Android",
+    "descripcion": "Convertidor smart Tv stick Android original 8 g ram con aplicaciones instaladas.",
+    "precio": "80000.00",
+    "imagen": "uploads/prod_1778015913_2030.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 16,
+    "nombre": "TV BOX Dinax Android.",
+    "descripcion": "Convertidor smart tv Dinax Android 8 g ram con aplicaciones",
+    "precio": "65000.00",
+    "imagen": "uploads/prod_1778015798_1438.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 15,
+    "nombre": "Mate listo autocebante 500 ml",
+    "descripcion": "Mate listo genérico autocebante acero inoxidable 500 ml varios colores disponibles.",
+    "precio": "32000.00",
+    "imagen": "uploads/prod_1778015595_4199.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 14,
+    "nombre": "Botella térmica deportiva stanley 600 ml",
+    "descripcion": "Botella térmica deportiva stanley acero inoxidable 600 ml",
+    "precio": "23000.00",
+    "imagen": "uploads/prod_1778015346_6617.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 13,
+    "nombre": "Botella térmica deportiva 750 ml",
+    "descripcion": "Botella térmica acero inox color sport 750 ml.",
+    "precio": "23000.00",
+    "imagen": "uploads/prod_1778014860_4039.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 12,
+    "nombre": "Mate listo stanley 750 ml",
+    "descripcion": "Mate listo acero inoxidable stanley autocebante 750 ml Gran capacidad de conservación térmica.",
+    "precio": "35000.00",
+    "imagen": "uploads/prod_1778014504_3919.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 11,
+    "nombre": "Micrófono para celular",
+    "descripcion": "Micrófono inalámbrico para celular excelente calidad de audio.",
+    "precio": "18000.00",
+    "imagen": "uploads/prod_1778014189_9662.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 10,
+    "nombre": "Mouse inalámbrico Netmak",
+    "descripcion": "Mouse inalámbrico mediano marca Netmak. Marca dedicada a productos de computación y Electrónica de calidad.",
+    "precio": "15000.00",
+    "imagen": "uploads/prod_1778013943_1630.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 9,
+    "nombre": "Control remoto smart tv universal",
+    "descripcion": "Control remoto universal de smart tv para casi todas las marcas!",
+    "precio": "16000.00",
+    "imagen": "uploads/prod_1777930374_1138.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 8,
+    "nombre": "Power bank Noga 5000 mah",
+    "descripcion": "Cargador portátil para celular 5000 mah (rinde aproximadamente 2 cargas)",
+    "precio": "23000.00",
+    "imagen": "uploads/prod_1777418994_2117.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 7,
+    "nombre": "Tensiometro digital",
+    "descripcion": "Tensiometro digital a pilas",
+    "precio": "27000.00",
+    "imagen": "uploads/prod_1777418806_9622.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 6,
+    "nombre": "Alargador zapatilla usb-tipo C carga rápida",
+    "descripcion": "Zapatilla universal con puerto usb y tipo C carga rápida",
+    "precio": "33000.00",
+    "imagen": "uploads/prod_1777418604_7746.jpeg",
+    "activo": 1
+  },
+  {
+    "id": 5,
+    "nombre": "cargador samsung original",
+    "descripcion": "cargador rápido samsung original 25 watts sin cable",
+    "precio": "24999.99",
+    "imagen": "uploads/prod_1776899936_1927.jpeg",
+    "activo": 1
+  }
+]

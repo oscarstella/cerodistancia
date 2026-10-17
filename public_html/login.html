@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ingresar | CeroDistancia</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <!-- GOOGLE FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="index.css?v=2.0">
+
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .auth-card {
+      width: 100%;
+      max-width: 440px;
+      background: var(--dark-card);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border-glass);
+      border-radius: 24px;
+      padding: 36px 30px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 35px rgba(16, 185, 129, 0.1);
+      position: relative;
+      z-index: 10;
+    }
+
+    .form-control-dark {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-glass);
+      color: #fff !important;
+      border-radius: 12px;
+      padding: 12px 16px;
+    }
+
+    .form-control-dark:focus {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(16, 185, 129, 0.5);
+      box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
+    }
+
+    .form-control-dark::placeholder {
+      color: #6b7280;
+    }
+
+    .btn-google {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border-glass);
+      color: #ffffff;
+      font-weight: 600;
+      border-radius: 12px;
+      padding: 12px;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn-google:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- GLOW EFFECTS -->
+  <div class="bg-glow-1"></div>
+  <div class="bg-glow-2"></div>
+
+  <div class="mb-4 text-center position-relative" style="z-index: 10;">
+    <a href="index.html" class="d-inline-flex align-items-center gap-2 text-decoration-none">
+      <span class="p-2 rounded-3 bg-dark border border-secondary border-opacity-25 shadow-sm d-inline-flex">
+        <i class="bi bi-lightning-charge-fill text-success fs-5"></i>
+      </span>
+      <span class="brand-badge fs-4">CeroDistancia</span>
+    </a>
+  </div>
+
+  <div class="auth-card">
+    <div class="text-center mb-4">
+      <h3 class="fw-bold text-white mb-1">Accedé a tu panel</h3>
+      <p class="text-muted small">Gestioná tus productos, precios y datos de tu tienda</p>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label text-muted small">Correo electrónico</label>
+      <input id="email" type="email" class="form-control form-control-dark" placeholder="nombre@ejemplo.com">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label text-muted small">Contraseña</label>
+      <div class="input-group">
+        <input id="password" type="password" class="form-control form-control-dark" placeholder="Tu contraseña">
+        <button class="btn btn-outline-secondary border-opacity-25" type="button" onclick="togglePass()">
+          <i class="bi bi-eye text-light" id="passEyeIcon"></i>
+        </button>
+      </div>
+    </div>
+
+    <button class="btn-primary-action w-100 justify-content-center py-3 mb-3" id="btnLogin">
+      <span>Iniciar sesión</span>
+      <i class="bi bi-box-arrow-in-right"></i>
+    </button>
+
+    <button class="btn-google w-100 mb-3" id="btnGoogle">
+      <i class="bi bi-google text-danger"></i>
+      <span>Ingresar con Google</span>
+    </button>
+
+    <div class="d-flex align-items-center my-3">
+      <hr class="flex-grow-1 border-secondary border-opacity-25 m-0">
+      <span class="px-3 text-muted small">o si no tenés cuenta</span>
+      <hr class="flex-grow-1 border-secondary border-opacity-25 m-0">
+    </div>
+
+    <button class="btn-secondary-action w-100 justify-content-center py-2" data-bs-toggle="modal" data-bs-target="#registerModal">
+      <span>Crear cuenta nueva</span>
+    </button>
+
+    <p id="msg" class="text-center mt-3 text-danger fw-semibold small mb-0"></p>
+
+    <div class="text-center mt-4 pt-2 border-top border-secondary border-opacity-25">
+      <a href="index.html" class="text-muted small text-decoration-none">← Volver al inicio</a>
+    </div>
+  </div>
+
+  <!-- MODAL DE REGISTRO -->
+  <div class="modal fade" id="registerModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-dark text-white border border-secondary border-opacity-25">
+        <div class="modal-header border-secondary border-opacity-25">
+          <h5 class="modal-title fw-bold">Crear nueva cuenta</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body p-4">
+          <div class="mb-3">
+            <label class="form-label text-muted small">Email de contacto</label>
+            <input id="regEmail" type="email" class="form-control form-control-dark" placeholder="usuario@ejemplo.com">
+          </div>
+          <div class="mb-2">
+            <label class="form-label text-muted small">Contraseña</label>
+            <input id="regPassword" type="password" class="form-control form-control-dark" placeholder="Mínimo 6 caracteres">
+          </div>
+          <small class="text-muted d-block mb-3">
+            • El email debe ser válido<br>
+            • La contraseña debe tener al menos 6 caracteres
+          </small>
+          <p id="regMsg" class="text-danger small mb-0"></p>
+        </div>
+        <div class="modal-footer border-secondary border-opacity-25">
+          <button class="btn-primary-action w-100 justify-content-center py-3" id="btnConfirmRegister">
+            <span>Confirmar registro</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function togglePass() {
+      const pass = document.getElementById("password");
+      const icon = document.getElementById("passEyeIcon");
+      if (pass.type === "password") {
+        pass.type = "text";
+        if (icon) icon.className = "bi bi-eye-slash text-light";
+      } else {
+        pass.type = "password";
+        if (icon) icon.className = "bi bi-eye text-light";
+      }
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Firebase -->
+  <script type="module" src="firebase.js"></script>
+  <script type="module" src="login_auth.js"></script>
+
+</body>
+
+</html>

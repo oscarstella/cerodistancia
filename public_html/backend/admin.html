@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Panel Admin | CeroDistancia</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        body {
+            background-color: #f0f2f5;
+        }
+
+        .navbar {
+            background-color: #212529 !important;
+        }
+
+        .tienda-card {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 15px;
+        }
+
+        .btn-verde {
+            background-color: #0fa956;
+            color: white;
+            border: none;
+        }
+
+        .btn-verde:hover {
+            background-color: #0c8a47;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-dark">
+        <div class="container d-flex justify-content-between">
+            <a href="panel.html" class="btn btn-light btn-sm"><i class="bi bi-arrow-left"></i> Volver al Panel</a>
+            <span class="navbar-brand fw-bold">Panel de Administración</span>
+            <div></div>
+        </div>
+    </nav>
+
+    <div class="container py-4">
+        <!-- ⚙️ CONFIGURACIÓN GENERAL -->
+        <div class="card mb-4 border-0 shadow-sm">
+            <div class="card-body">
+                <h5 class="fw-bold mb-3"><i class="bi bi-gear-fill"></i> Configuración General</h5>
+                <div class="row align-items-end">
+                    <div class="col-auto">
+                        <label class="form-label mb-1 small text-muted">Monto Suscripción Mensual (ARS)</label>
+                        <div class="input-group">
+                            <span class="input-group-text">$</span>
+                            <input type="number" id="montoSuscripcion" class="form-control" style="max-width: 150px;" placeholder="Ej: 100">
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn btn-verde" onclick="guardarConfig()">
+                            <i class="bi bi-save"></i> Guardar Cambios
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="fw-bold mb-4">Todas las tiendas registradas</h3>
+
+        <div class="table-responsive bg-white p-3 rounded shadow-sm">
+            <table class="table table-hover align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>ID</th>
+                        <th>Tienda</th>
+                        <th>Registro / Act.</th>
+                        <th>Usuario (Email)</th>
+                        <th>Estado</th>
+                        <th>Suscripción</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="listaTiendasAdmin">
+                    <!-- Se carga con JS -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script type="module">
+        import { auth } from "./firebase.js";
+        import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        const ADMIN_EMAIL = "oscarns@gmail.com";
+
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                window.location.href = "login.html";
+                return;
+            }
+
+            const email = user.email;
+
+            if (email !== ADMIN_EMAIL) {
+                alert("No tienes permisos para acceder a esta página.");
+                window.location.href = "panel.html";
+                return;
+            }
+
+            cargarTiendas(email);
+            cargarConfig();
+        });
+
+        function cargarConfig() {
+            fetch("backend/config_monto.php?accion=get")
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById("montoSuscripcion").value = data.monto;
+                });
+        }
+
+        window.guardarConfig = function() {
+            const monto = document.getElementById("montoSuscripcion").value;
+            const email = auth.currentUser.email;
+
+            fetch("backend/config_monto.php?accion=set", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ admin_email: email, monto: monto })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.ok) alert("Monto actualizado correctamente");
+                else alert("Error: " + data.error);
+            });
+        }
+
+        function cargarTiendas(email) {
+            fetch("backend/admin_get_tiendas.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email: email })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.error) {
+                        alert(data.error);
+                        window.location.href = "panel.html";
+                        return;
+                    }
+
+                    const cont = document.getElementById("listaTiendasAdmin");
+                    cont.innerHTML = "";
+
+                    data.forEach(t => {
+                        let badgeColor = "secondary";
+                        if (t.estado === "activa") badgeColor = "success";
+                        if (t.estado === "pausada") badgeColor = "info";
+                        if (t.estado === "demo") badgeColor = "warning text-dark";
+
+                        const badge = `<span class="badge bg-${badgeColor}">${t.estado.toUpperCase()}</span>`;
+
+                        let subActions = "";
+                        if (t.mp_preapproval_id) {
+                            // SI TIENE SUSCRIPCIÓN EN MERCADO PAGO
+                            subActions = `<small class="text-muted d-block font-monospace" style="font-size:0.7rem;">${t.mp_preapproval_id}</small>`;
+                            if (t.estado === "pausada") {
+                                subActions += `<button class="btn btn-link btn-sm text-primary p-0 fw-bold" onclick="gestionarSuscripcion(${t.id}, 'reanudar', '${t.nombre}')">REANUDAR</button>`;
+                            } else if (t.estado === "activa") {
+                                subActions += `<div class="d-flex gap-2">
+                                    <button class="btn btn-link btn-sm text-secondary p-0" onclick="gestionarSuscripcion(${t.id}, 'pausar', '${t.nombre}')">PAUSAR</button>
+                                    <button class="btn btn-link btn-sm text-danger p-0 fw-bold" onclick="gestionarSuscripcion(${t.id}, 'cancelar', '${t.nombre}')">ANULAR MP</button>
+                                </div>`;
+                            }
+                        } else if (t.estado === "activa") {
+                             // SI ESTÁ ACTIVA PERO NO TIENE SUSCRIPCIÓN (TESTS O ACTIVACIÓN MANUAL)
+                             subActions = `<small class="text-muted d-block">Sin ID de Pago</small>
+                                           <button class="btn btn-warning btn-sm py-0 px-1 fw-bold" style="font-size:0.7rem;" onclick="gestionarSuscripcion(${t.id}, 'cancelar', '${t.nombre}')">BAJAR A DEMO</button>`;
+                        }
+
+                        let fCreacion = t.fecha ? new Date(t.fecha.replace(' ', 'T')).toLocaleDateString('es-AR', {day: '2-digit', month: '2-digit', year: 'numeric'}) : '-';
+                        let fMod = t.modificacion ? new Date(t.modificacion.replace(' ', 'T')).toLocaleDateString('es-AR', {day: '2-digit', month: '2-digit', year: 'numeric'}) : null;
+
+                        const tr = document.createElement("tr");
+                        tr.innerHTML = `
+                          <td class="text-muted small">${t.id}</td>
+                          <td>
+                            <div class="fw-bold">${t.nombre}</div>
+                            <small class="text-muted">/${t.slug}</small>
+                          </td>
+                          <td class="small text-muted align-middle" style="white-space: nowrap;">
+                            <div><i class="bi bi-calendar-plus" title="Fecha Creación"></i> ${fCreacion}</div>
+                            ${fMod ? `<div><i class="bi bi-pencil-square" title="Última Modificación"></i> ${fMod}</div>` : ''}
+                          </td>
+                          <td class="small">
+                            ${t.usuario_email || '<span class="text-danger">Sin email</span>'}
+                            ${t.usuario_email ? `
+                                <button class="btn btn-link btn-sm text-danger p-0 ms-1" onclick="eliminarUsuario('${t.usuario_email}')" title="Eliminar todo de este usuario">
+                                    <i class="bi bi-person-x"></i>
+                                </button>
+                            ` : ''}
+                          </td>
+                          <td>${badge}</td>
+                          <td>${subActions || '<span class="text-muted small">-</span>'}</td>
+                          <td>
+                            <div class="d-flex gap-1">
+                              <a href="tienda.php?slug=${t.slug}&preview=true" target="_blank" class="btn btn-outline-primary btn-sm" title="Vista Previa">
+                                <i class="bi bi-eye"></i>
+                              </a>
+                              <a href="armar_tienda.html?slug=${t.slug}" class="btn btn-outline-success btn-sm" title="Configurar">
+                                <i class="bi bi-pencil"></i>
+                              </a>
+                              <button class="btn btn-outline-danger btn-sm" onclick="borrarTienda(${t.id}, '${t.nombre}')" title="Eliminar Tienda">
+                                <i class="bi bi-trash"></i>
+                              </button>
+                            </div>
+                          </td>
+                        `;
+                        cont.appendChild(tr);
+                    });
+                })
+                .catch(err => {
+                    console.error(err);
+                    alert("Error al cargar las tiendas.");
+                });
+        }
+
+        window.gestionarSuscripcion = function(id, accion, nombre) {
+            const verbos = { 'pausar': 'PAUSAR', 'reanudar': 'REANUDAR', 'cancelar': 'ANULAR' };
+            if (!confirm(`¿Estás seguro de que quieres ${verbos[accion]} la suscripción de "${nombre}"?`)) {
+                return;
+            }
+
+            const email = auth.currentUser.email;
+
+            fetch("backend/cancelar_suscripcion.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ tienda_id: id, email: email, accion: accion })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.ok) {
+                    alert(data.mensaje);
+                    cargarTiendas(email);
+                } else {
+                    alert("Error: " + (data.error || "No se pudo realizar la acción."));
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                alert("Error al procesar la solicitud.");
+            });
+        }
+
+        window.eliminarUsuario = function(emailTarget) {
+            if (!confirm(`¿Estás seguro? ESTO ELIMINARÁ TODAS LAS TIENDAS Y PRODUCTOS del usuario "${emailTarget}". Esta acción es irreversible.`)) {
+                return;
+            }
+
+            const emailAdmin = auth.currentUser.email;
+
+            fetch("backend/eliminar_usuario.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ admin_email: emailAdmin, target_email: emailTarget })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.ok) {
+                    alert(data.mensaje);
+                    cargarTiendas(emailAdmin);
+                } else {
+                    alert("Error: " + (data.error || "No se pudo eliminar al usuario."));
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                alert("Error al procesar la solicitud.");
+            });
+        }
+
+        window.borrarTienda = function (id, nombre) {
+            if (!confirm(`¿Estás seguro de que quieres eliminar la tienda "${nombre}"? Esta acción no se puede deshacer.`)) {
+                return;
+            }
+
+            const email = auth.currentUser.email;
+
+            fetch("backend/eliminar_tienda.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: `id=${id}&email=${email}`
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.ok) {
+                        alert("Tienda eliminada correctamente.");
+                        cargarTiendas(email);
+                    } else {
+                        alert("Error: " + (data.error || "No se pudo eliminar la tienda."));
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                    alert("Error al procesar la solicitud.");
+                });
+        }
+    </script>
+
+</body>
+
+</html>

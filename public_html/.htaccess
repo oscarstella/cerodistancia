@@ -1,0 +1,17 @@
+RewriteEngine On
+
+# 1. EVITAR CACHE DE ARCHIVOS HTML, PHP, CSS y JS EN NAVEGADORES (Forzar actualización sin Ctrl+Shift+R)
+<FilesMatch "\.(html|htm|php|css|js)$">
+    <IfModule mod_headers.c>
+        Header set Cache-Control "no-cache, no-store, must-revalidate, max-age=0"
+        Header set Pragma "no-cache"
+        Header set Expires "Wed, 11 Jan 1984 05:00:00 GMT"
+    </IfModule>
+</FilesMatch>
+
+# 2. Si el archivo o directorio existe físicamente, servirlo directamente
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# 3. Reescribir slugs de tiendas a tienda.php
+RewriteRule ^([a-zA-Z0-9-]+)$ tienda.php?slug=$1 [L,QSA]
